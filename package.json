@@ -1,0 +1,26 @@
+{
+  "name": "faraday-guides",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "run:build": "next start",
+    "start": "next dev",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "13.5.5",
+    "nextra": "^2.13.2",
+    "nextra-theme-docs": "^2.13.2",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.5",
+    "typescript": "^5"
+  }
+}

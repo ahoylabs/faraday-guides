@@ -8,7 +8,7 @@ For Tavern or SillyTavern: just import the .png file directly into Faraday.
 
 JSON format cards are not currently supported.
 
-![Imports](../images/character_imports.png)
+![Imports](/images/character_imports.png)
 
 ## How do I import conversations from Character.ai?
 
@@ -23,9 +23,9 @@ Follow these steps:
 
 > **Note**: character.ai and Faraday function differently, especially with Llama models. Imported characters might not behave identically. Adjust character details in Faraday for desired responses.
 
-![Oobabooga](../images/download_as_oobabooga.png)
+![Oobabooga](/images/download_as_oobabooga.png)
 
-![C.AI](../images/import_cai_chat.png)
+![C.AI](/images/import_cai_chat.png)
 
 ## How do I change my model download location?
 
@@ -35,7 +35,7 @@ Go to the "Manage Models" page and click on the "Change Download Location" butto
 
 We don't recommend using custom models, but if you are an advanced user, click "Show in Finder" (see screenshot) and drag in your models there. Make sure they all end in .gguf!
 
-![Manage Models](../images/manage_models.png)
+![Manage Models](/images/manage_models.png)
 
 ## How do I use GPU Acceleration?
 

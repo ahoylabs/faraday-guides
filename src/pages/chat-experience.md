@@ -17,4 +17,4 @@ While Faraday only formats these two types of text, other syntax can be used for
 - Use example dialogue in your Character prompts!
 - When you first start a new chat, we recommend that you edit incoming responses so that the model "learns" how you want the Character to speak. You can find the edit button by hovering over any message (see screenshot).
 
-![Edit](../images/edit.png)
+![Edit](/images/edit.png)

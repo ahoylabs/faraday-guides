@@ -57,6 +57,6 @@ There are multiple different levels of quantization, ranging from 2bit to 8bit, 
 
 Perfpexity is a metric for quality of text generations. A lower perplexity value is better.
 
-![Quants](../images/quants.png)
+![Quants](/images/quants.png)
 
 On a technical level, parameters are how detailed a model can get in its response. It’s how finely it stores the influence of the data it was trained on. Quantization is taking that full 16 bit format those parameters are saved in and reducing them down. So the model still sees the detailed influence, but it conveys it slightly less well. It turns out that compressing that data leads to relatively little data loss; the information in parameters doesn’t really seem to need the level of precision it’s given. The parameters are far more important. In this way it’s comparable to resolution and number of colors in an image. Parameters are like the resolution at which we can see the data, while quants are like the number of colors possible in each pixel.

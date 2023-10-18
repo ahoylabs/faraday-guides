@@ -117,4 +117,4 @@ This example includes instructions on the current style and atmosphere, as well 
 
 It may help to add something along the following lines to your model instructions to make the author's note more effective: Response adaptability: When prompted with [square brackets], you will interrupt your usual roleplay routine and use your next response to fulfill whatever request is given to you within the [square brackets].
 
-![Edit](../images/authors-note.png)
+![Edit](/images/authors-note.png)
