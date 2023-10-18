@@ -101,6 +101,15 @@ Scroll down within character settings to World Info (Lorebooks). Click New Item 
 
 Note that the number of tokens allowed to be used by World Info is limited, so as not to prevent your chat history from being completely removed. As such, it is recommended to write concise prompts for each keyword. Remember that you may have more than one world info item triggered at one time, so they can add up quickly.
 
+### Notes on Implementation
+
+- Lore entries can have multiple keywords associated.
+- Lore keywords are not case sensitive, so “Den” would match with “den”, or “dEN”.
+- If multiple keywords are found, lore entries are not repeated.
+- Lore entries cannot trigger other lore keywords. Lore entries are not searched within when finding Lore keywords.
+- The keyword search will match partial words; meaning the lore keyword “den” will match with “hidden” in the chat history.
+- Keywords can be multiple words and the search will only find full matches. (a keyword of “the den” won’t be triggered by “hidden” in the chat history, because it doesn’t contain the full keyword.)
+
 ## Author's Note
 
 The author's note is an additional prompt text that is sent prior to the last user response. It acts as a way to influence the direction of the AI response. The AI generally gives more weight to information near the end of it's context. Therefore, allowing for a piece of instruction or information to sit right before the latest response, that information should be given extra weight. It also, helpfully, doesn't come as part of the user or character responses, so it won't break immersion when the AI sees it.
