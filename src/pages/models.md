@@ -2,26 +2,27 @@
 
 ## Quickstart
 
-You just downloaded your first Character, and realize that you need a model to start chatting. You go to the model hub, or if you’re a hot shot, you go onto huggingface and see that there are hundreds of models of various names, types and sizes. After the panic subsides, you go onto Discord, and you ask the question: “which model should I use?”. Unfortunately, there is no direct answer to this question, but we can guide you on your path to self-discovery with some advice.
+You just downloaded your first Character, and realize that you need a model to start chatting. You go to the model manager, or if you’re a hot shot, you go onto huggingface and see that there are hundreds of models of various names, types and sizes. After the panic subsides, you go onto Discord, and you ask the question: “which model should I use?”. Unfortunately, there is no objectively best answer to this question, but we can guide you on your path to self-discovery with some advice.
 
 Quick answer:
 
-- **Llama 2 - OpenOrca Platypus2 13B Q4_K_M**
-- or **Llama 2 - Luna AI 7B Q4_K_M** if Faraday is warning you against 13B.
+- General Model: &ensp; **Llama 2 - OpenOrca Platypus2 13B Q4_K_M** &ensp; *16GB RAM or greater.*
+- Lower Resources: &ensp; **Llama 2 - Luna AI 7B Q4_K_M** &ensp; *8GB of RAM or greater*
+- Demon on Your Shoulder &ensp; **MLewd-ReMM 20B Q4_k_M** &ensp; *32GB of RAM or greater.*
 
-These models are both very good at pretty much any form of chat or roleplay you throw at them. They are also both uncensored, so you shouldn't hit any constraints in your interactions.
+These models are very good at pretty much any form of chat or roleplay you throw at them. They are all uncensored, so you shouldn't hit any constraints in your interactions. For those looking for more intense interactions, while many other models will follow you into depravity, MLewd will lead you there.
 
 ## LLaMa? LLaMa2?
 
 **Short answer:** Just use Llama2. It's better in pretty much every way.
 
-Faraday runs its own version of the Llama.cpp backend, which is a way to run any models based on the LLaMa architecture (developed and provided by Meta). It is generally considered a large evolution over previous language model types. More recently, Meta released a second version of LLaMa helpfully named Llama 2 (yes! We don’t even have to capitalize random letters in the word now!). Llama 2 is further trained, leading to higher quality output. The models in the model hub are ‘fine-tunes’ based on either of these base models.
+Faraday runs its own version of the Llama.cpp backend, which is a way to run models based on the LLaMa architecture (developed and provided by Meta). It is generally considered a large evolution over previous language model types. More recently, Meta released a second version of LLaMa helpfully named Llama 2 (yes! We don’t even have to capitalize random letters in the word now!). Llama 2 is further trained, leading to higher quality output. The models in the model hub are ‘fine-tunes’ based on either of these base models.
 
 ## File Formats
 
 There are multiple Large Language Model (LLM) file formats, and each is used in a different way. The three most relevant ones now are FP16, GPTQ, GGUF, and GGML. In short, FP16 is the original model created through training, GPTQ is a format used for inference fully on the GPU, and GGML and GGUF are formats that run much faster on the CPU.
 
-**Faraday works with GGUF files, and is compatible with GGML files.** All the files on Faraday's supported models list are of either GGML or GGUF.
+**Faraday works with GGUF files, and GGML files may work but are deprecated.** All the files on Faraday's supported models list are of either GGML or GGUF.
 
 ### Formats that are not compatible with Faraday
 
@@ -29,11 +30,15 @@ There are multiple Large Language Model (LLM) file formats, and each is used in 
 
 **GPTQ:** Short for Generative Pretrained Transformer model, this is a file type used in many LLM interfaces that runs primarily on the GPU. It is more compact than the multi-file FP16 but limited to inference on the GPU (or very slow CPU use). There is a lot of work being done currently to improve this format and make it more usable for more people.
 
+**AWQ:** A form of GPTQ model that has been quantized in a different way in order to be smaller and run faster.
+
+**LLaVa:** A multimodal model (meaning it can understand images as well as text) that may someday be compatible with Faraday, but, for now, is not.
+
 ## Parameter Size (3B, 7B, 13B, 30B, 33B, 70B)
 
 The ‘B number’ of a model represents the number of parameters of which the model is composed. If quantization is like changing the resolution of an image, then parameters are the number of colors in the image; 70B is HDR and 3B is a gif from the 90s. Faraday will give you some guidance on which number of parameters to use, with the most popular being 7B and 13B. A 13B should be able to run on 16GB of RAM, while a 7B should work on 8GB of RAM. For those with beefy machines, you can try your luck with a 33B or 70B model, though regardless of your system’s specs, those will be considerably slower.
 
-If you just came from ChatGPT, Poe, Character.ai, etc., please keep in mind that the models you can run locally on your machine are different than an online service. For instance, ChatGPT-4 is believed to have 1.76 trillion parameters, which ::checks math:: is a lot more than 13 billion. Realistically though, 70B models have been shown to perform equivalent to ChatGPT 3 in real world testing, and 7B or 13B models can be perfectly usable if you keep their limits in mind.
+If you just came from ChatGPT, Poe, Character.ai, etc., please keep in mind that the models you can run locally on your machine are different than an online service. For instance, ChatGPT-4 is believed to have 1.76 trillion parameters, which ::checks math:: is a lot more than 13 billion. Realistically though, 70B models have been shown to perform equivalent to ChatGPT 3 in real world testing, and 7B or 13B models can be perfectly usable if you keep their limits in mind. Generally, the larger the model, the more nuanced it's responses will be and the better it will follow context and instructions.
 
 ## Finetunes and Mixes
 
