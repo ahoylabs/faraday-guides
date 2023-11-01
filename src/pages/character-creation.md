@@ -8,14 +8,14 @@ As a general rule, you want to keep your characters limited to around 1000 token
 
 ## Logical Connections
 
-Language models are not thinking, which means they are not great at logic. Higher parameter models get closer at approximating logic through a higher ‘resolution’ inference, but even a giant model like ChatGPT is not great at problem solving or connecting the dots.
-What this means is that you should be very specific and clear about what you describe in your character. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. Similarly, statements like “Sarah is the friend of John’s daughter” can confuse the model, as there is a logical step of understanding that “John has a daughter and that daughter has a friend and that friend is Sarah and John and Sarah have no actual relationship beyond this connection.”
+Language models do not think, which means they are not great at logic. Higher parameter models get closer at approximating logic through a higher ‘resolution’ inference, but even a giant model like ChatGPT is not great at problem solving or connecting the dots.
+What this means is that you should be very specific and clear about what you describe in your character. A statement like *“Joan is Sarah’s mother and she is tall”* leaves ambiguity as to who is tall. Similarly, statements like “Sarah is the friend of John’s daughter”* can confuse the model, as there is a logical step of understanding that *“John has a daughter and that daughter has a friend and that friend is Sarah and John and Sarah have no actual relationship beyond this connection.”*
 
-Character descriptions should be direct, and you want to make sure it is always clear who you are talking about. The above examples could be rewritten as “Joan is Sarah’s mother and Joan is tall.” And “Sarah is friends with Kim. Kim is John’s daughter. John and Sarah know each other through Kim.”
+Character descriptions should be direct, and you want to make sure it is always clear who you are talking about. The above examples could be rewritten as *“Joan is Sarah’s mother and Joan is tall.”* And *“Sarah is friends with Kim. Kim is John’s daughter. John and Sarah know each other through Kim.”*
 
 ## Brevity
 
-You want to mediate between providing too little information and providing too much when creating a character. On one hand little details can add a lot of flavor to a character’s persona. On the other hand, too much detail can mislead the model as to what is an important characteristic. A similar thing to watch out for is qualities that may be contradictory, even indirectly. If you say your character is a dancer and then later say they are clumsy, those qualities may confuse the model because dancers are rarely thought of as clumsy. If you truly mean both of these things you may be able to explain it with something like “Sarah is a wonderful dancer, but is clumsy when not on the dance floor.” This should help define how these two qualities can coexist.
+You want to mediate between providing too little information and providing too much when creating a character. On one hand little details can add a lot of flavor to a character’s persona. On the other hand, too much detail can mislead the model as to what is an important characteristic. A similar thing to watch out for is qualities that may be contradictory, even indirectly. If you say your character is a dancer and then later say they are clumsy, those qualities may confuse the model because dancers are rarely thought of as clumsy. If you truly mean both of these things you may be able to explain it with something like *“Sarah is a wonderful dancer, but is clumsy when not on the dance floor.”* This should help define how these two qualities can coexist.
 
 You want to avoid repeating yourself as much as possible and, unless you have a simple character, prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing, making them helpful.
 
@@ -23,7 +23,7 @@ You can also cover multiple qualities with a single keyword. For instance if you
 
 ## Formatting
 
-The goal of formatting a character is to describe the character holistically in as few tokens as feasible. There is no perfect way to accomplish this, but there are methods that have proven to work decently most of the time. You can even combine several of these methods if it helps convey the character.
+The goal of formatting a character is to describe the character holistically in as few tokens as feasible. There is no perfect way to accomplish this, but there are methods that have proven to work decently most of the time. You can even combine several of these methods if it helps convey the character. Below are examples of four popular formatting methods.
 
 ### Natural Language
 
@@ -34,14 +34,16 @@ Character is a loving husband and wonderful friend, whose life revolves around h
 Character is a husband, good friend, family man. Character is smart, thoughtful, helpful, doctorate in political science. Character lives in Basil, raised in New York.
 
 ### Formatted Lists
-
-Character
-[personality = (smart, thoughtful, helpful.)
+```
+Character[
+personality = (smart, thoughtful, helpful.)
 Relationships = (husband, good friend, family.)
 Education = (doctorate in political science.)
 Location = (currently Basil, raised in New York.)]
+```
 
-```json
+json
+```
 {
   "character_name": "Character",
   "age": 34,
@@ -57,7 +59,7 @@ Location = (currently Basil, raised in New York.)]
 }
 ```
 
-## How do I get longer/shorter responses out of my Character?
+## Influencing Response Style
 
 The models are completion models, meaning they will do their best to complete the text provided to them. If you want its response to be longer, or shorter, or to include more detail, you want to provide it with something to follow.
 
