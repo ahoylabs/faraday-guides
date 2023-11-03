@@ -12,6 +12,9 @@ Quick answer:
 
 These models are very good at pretty much any form of chat or roleplay you throw at them. They are all uncensored, so you shouldn't hit any constraints in your interactions. For those looking for more intense interactions, while many other models will follow you into depravity, MLewd will lead you there.
 
+![Faraday Model Manager](/images/model_download.png)
+*The Faraday model Manager makes it easy to find the latest and best models to download and is updated frequently as new models come out.*
+
 ## LLaMa? LLaMa2?
 
 **Short answer:** Just use Llama2. It's better in pretty much every way.
@@ -57,6 +60,9 @@ There are multiple different levels of quantization, ranging from 2bit to 8bit, 
 ### K-Quants
 
 'K-quants' are a newer form of quantization that changes how the quantization process works. While the exact difference between these and a ‘regular’ quant is complicated, they are generally smaller file sizes for the same quality of output, so GGML files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users. The Q4 describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
+
+![Faraday Quantization Dropdown](/images/model_quants.png)
+*Faraday has a selection of quants for each model listed, including the file size. We recommend Q4_k_M for a good combination of quality and speed.*
 
 ### Size vs. Perplexity Trade-Off
 
