@@ -68,3 +68,44 @@ The two most powerful ways to do that are to provide example dialogues and to ed
 Another way to direct the format of the responses is to construct your first message in the way you want the model to respond. It’s very tempting to format the first message as an out of context description of the scenario, but it is the first response from the character, and, as such, is an important method to control how responses are composed.
 
 As an aside, if you find that the character really wants to describe your actions, look at your first message and if it is describing what the user is doing. If the character settings tell the model not to perform actions for user and the first message is largely describing what the user is doing at that moment, there’s a conflict that the first message is likely to win.
+
+
+## The Faraday Character Creator
+
+Faraday makes it easier to create and edit your character settings by dividing the prompt into distint sections. Additionally, you can set the user name and character name in one location and then user {character} and {user} within the rest of the fields, which Faraday will automatically replace. In this way, users can customize the character and user name without going through the full character description.
+
+### Model Instructions
+
+Most models are trained to accept instructions at the start of the context. Here you can set what type of output you want, specific instructions for the style and format of responses, and anything else you may want the model to know about how it behaves. Note that some models are better at actually following specific instructions than others, so don't be dismayed if you give it a very specific rule to follow and it doesn't; that's normal.
+
+![Character Creator Model Instructions](/images/creator_instructions.png)
+
+### Character Persona
+
+Input all the details on the character here using one of the styles noted above (or your own special style).
+
+### User Persona
+
+The AI will behave more realistically if they know something about you, the user. Include appearance, history with the character, and anything else you want here. Note that the character will know anything you type here, so if you don't think that the character should know your love of fish ladders going into the chat, don't add that detail here.
+
+### Scenario
+
+This is where you tell the AI what you and the character are doing together, or what the situation is. You don't *have* to include any information here, but it can definitely help to give the AI a direction. You may find characters in the Character Hub that have more information here than in the character persona section; some character cards are more of a scenario than specific character.
+
+![Character Creator Personas and Scenario](/images/creator_persona.png)
+
+### Example Dialogue
+
+Here is a way to influence how the AI will respond; long, short, rude, affectionate, roleplay with actions between asterisks, prose with speech in quotes. Typically, 1 - 3 examples are helpful. Note that you do not want to include important plot items here, as they *can* blead into the chat; try to keep these somewhat generic in terms of what's happening, but do feel free to include detail on the character or scenario, as you *want* that to bleed over. Also note that you **do not have to include user responses**. They are helpful if you want the AI to respond to specific user input, but for most cases it's not completely necessary and can save tokens to keep out.
+
+### First Message
+
+This is the first response *from the AI character*. Similarly to exmample dialogue, this is an important tool to influence how the AI character will respond. The models we use are text *completion* models, and when you prime the character with a first message, it will be better able to complete the text in a similar style and voice. A common issue that many creators run into is that they try to set the scene using the first message, forgetting that this message is *from the character*. If you don't want your character to give out of character descriptions of the scene, don't start by making it do so; get creative in how the character can set the scene in their voice.
+
+![Character Creator Example Dialogue and First Message](/images/creator_example_dialogue.png)
+
+### Worl Info (Lorebooks)
+
+World info is described in the advanced section, so see that for a more thorough description. In this section of the character creator, you can input a keyword (or keywords), along with an associated entry. During chat, none of this section is in context until the character or user use one of the keywords, at which time the entry will be added to context for a limited duration. Use this section to add information that you don't necessarily want eating up tokens all the time, but is good for the character to know.
+
+![Character Creator World Info](/images/creator_lore.png)
