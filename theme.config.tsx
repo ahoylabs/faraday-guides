@@ -23,6 +23,16 @@ const config: DocsThemeConfig = {
       <link rel="icon" href="/favicon.png" />
     </>
   ),
+  // this is a hack to hide the edit link
+  editLink: {
+    text: "Edit this page on GitHub",
+    component: () => {
+      return <></>;
+    },
+  },
+  feedback: {
+    content: "Suggestions? Open a Github Issue!",
+  },
 };
 
 export default config;
