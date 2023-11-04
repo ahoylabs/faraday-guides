@@ -1,6 +1,8 @@
 # Model Settings
 The basic function of the language models we use is to set the probability of every possible token based on the tokens that came before it. It then chooses one of those tokens to output, then recalculates the probabilities for the next token. So, at each generation of a token, we have a 'pool' of hundreds of tokens, each with an associated probability. Unfortunately, we can't just use the most probable token, as that will typically be kind of boring and can lead to repetition and patterns. So, to help select the next token, we use a number of *samplers* to reduce the pool of possible tokens to a set that is then randomly selected from. The following samplers are available in Faraday. These samplers help remove unlikely or unwanted tokens and provide a pool of tokens that should make sense, all based on their probabilities. Adjusting the parameters of each, can influence how conservative or how creative the models may respond.
 
+![Faraday Model Settings](/images/model_settings.png)
+
 ## Temperature
 - **Default:** 0.8
 - **Definition:** Value used to modulate the probablities for the next token. (How likely the model is to choose a lower probability token next.)
