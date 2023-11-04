@@ -45,10 +45,13 @@ While the GGUF format is optimized to run effectively on CPU, the GPU is signifi
 
 1. Open Faraday's settings page.
 2. Navigate to the "GPU Support" section and pick your dedicated GPU (do not use integrated GPUs).
-3. Choose **cuBlas 12.1** for NVIDIA cards or **clblast** for AMD. (For older systems, consider **cublas 11.7**).
 
 Faraday now leverages your GPU! More VRAM translates to quicker text generation.
 
+![GPU Support](/images/gpu_support.png)
+
 ### Manual VRAM Management:
 
-For advanced users, switch from auto to manual VRAM allocation. Exercise caution; this process demands expertise.
+Adcanced users can try switching from auto to manual VRAM allocation to optimize speeds. Exercise caution; this process demands expertise. Please note that every system configuration uses VRAM a little differently and the VRAM amount listed in Faraday is very unlikely to match that atually used (It will always be lower than actual usage.).
+
+To optimize your VRAM usage, you will need to run Task Manager and note how much VRAM is filled after you adjust the manual VRAM setting and enter a chat. If you get within about 300MB of your GPU's VRAM amount, you will start using shared memory, which is slow and inefficient. Again, all of this is *very* system dependent and also depends on what else you have open on your computer. Faraday's Auto GPU mode should always 'just work' whereas manual may need periodic adjustments even after you get it just right.
