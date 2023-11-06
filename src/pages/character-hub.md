@@ -22,7 +22,7 @@ Once you are ready to post your character, follow these steps:
 
 - In the screen this brings up, you'll see a number of new fields to fill out. Provide a brief description that will go on the character card, along with a longer description in *Author's Comment*. If your character is of a sexual or gory nature, please mark it as NSFW. This will help people filter out NSFW cards when in the hub. Then add tags that will make the character easier for people to find. Lastly, provide a recommended model. This usually is just the model you used while making the character. Users don't *have to* use this model, but it can be helpful to know how to get the best responses.
 
-
+![Character Hub Upload Page](/images/hub_upload.png)
 
 - Once the details are properly filled out, and you have read the *community guidelines* to ensure your character meets the standards for the Character Hub, hit "Post Character" and your character will be uploaded to the hub.
 
