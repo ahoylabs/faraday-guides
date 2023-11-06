@@ -10,13 +10,18 @@ Quick answer:
 - Lower Resources: &ensp; **Llama 2 - Luna AI 7B Q4_K_M** &ensp; *8GB of RAM or greater*
 - Demon on Your Shoulder &ensp; **MLewd-ReMM 20B Q4_k_M** &ensp; *32GB of RAM or greater.*
 
-These models are very good at pretty much any form of chat or roleplay you throw at them. They are all uncensored, so you shouldn't hit any constraints in your interactions. For those looking for more intense interactions, while many other models will follow you into depravity, MLewd will lead you there.
+These models are very good at pretty much any form of chat or roleplay you throw at them. They are all uncensored, unlike what you may experience with ChatGPT, so you shouldn't hit any constraints in your interactions, whether you are looking for health advice, action roleplay, or anything else. For those looking for more intense interactions, while many other models will follow you into depravity, MLewd will lead you there.
+
+![Faraday Model Manager](/images/model_download.png)
+*The Faraday model Manager makes it easy to find the latest and best models to download and is updated frequently as new models come out.*
 
 ## LLaMa? LLaMa2?
 
-**Short answer:** Just use Llama2. It's better in pretty much every way.
+**Short answer:** Just use Llama2 based models. It's better in pretty much every way.
 
-Faraday runs its own version of the Llama.cpp backend, which is a way to run models based on the LLaMa architecture (developed and provided by Meta). It is generally considered a large evolution over previous language model types. More recently, Meta released a second version of LLaMa helpfully named Llama 2 (yes! We don’t even have to capitalize random letters in the word now!). Llama 2 is further trained, leading to higher quality output. The models in the model hub are ‘fine-tunes’ based on either of these base models.
+Faraday is used to run local large language models (LLM's) that generate text by predicting what should follow the text given to it. The models themselves are trained to predict the next word using billions of different texts, scraped from many sources. In this way they *appear* to contain a huge wealth of information because they are *very* good at predicting the next word. Many of these models have been 'tuned' to follow instructions and participate in chat or roleplay. In Faraday, users create 'characters' that include these instructions and give the AI a persona that they write from the persective of.
+
+Faraday runs its own version of the Llama.cpp backend, which is a way to run models based on the LLaMa architecture (developed and provided by Meta). LLaMa is generally considered a large evolution over previous language model types. More recently, Meta released a second version of LLaMa helpfully named Llama 2 (yes! We don’t even have to capitalize random letters in the word now!). Llama 2 is further trained, leading to higher quality output. The models in the model hub are ‘fine-tunes’ based on either of these base models. More recently we have gotten a handful of different model bases, for instance Mistral is a very promising open source base model recently released in a 7B version.
 
 ## File Formats
 
@@ -52,11 +57,21 @@ Exploring the different fine-tunes can feel overwhelming, but you are likely not
 
 GGML/GGUF files are quantized, which essentially means they are shrunk from the original model. There is a trade-off between quantization and quality of output. It’s like the resolution of an image, where there’s a point you start noticing it looks pixelated. The exact trade-off in levels of quantization is heavily studied and debated, but until you know more, assume that you should stick with models of type Q4_K_M.
 
-There are multiple different levels of quantization, ranging from 2bit to 8bit, each with their own level of trade-off. For inference (as opposed to training), the drop in quality of the model does not scale linearly with the reduction in bits. For instance, there is very little difference in the quality of response from an 8-bit quantized model versus a full FP16 model, whereas there is a notable difference with a 2-bit. Think of it like going from a 10 mega-pixel image to a 5 mega-pixel image, then down to a 512x512 pixel image. We generally find the ‘sweet spot’ to be models of 4- or 5-bit quantization. This is important because smaller file sizes work faster and with less hardware
+Another helpful way of visualizing the impact of quantization is to think of it as how specific a response can be to the question *"Tell me about pizza"*.
+- With Q1 you have two possible outputs: *'It's good'*, and *'It's bad'*.
+- With Q2 you have four possible outputs: *'It's excellent'*, *'It's good'*, *'It's okay"*, and *'It's bad'*.
+- With Q3 you have eight possible outputs: *'It's excellent'*, *'It's very good'*, *'It's good'*, *'It's decent'*, *'It's okay'*, *'It's kind of bad'*, *'It's bad'*, *'It's horrible'*.
+...And so on with Q4, Q5, Q6, and Q8. As you reduce the quantization, your possible responses become less and less precise. They may still be generally correct, but they won't be *specifically* correct. For pizza, we only need one answer: *'It's great'*, but for a more complex subject, you likely want the model to have more nuance. However, remember that this analogy is an oversimplification, and real-world quantization, especially in neural networks, deals with numerical values at a much larger complexity level.
+(*Thank you Discord user @Sinnner for suggesting this metaphor*)
+
+There are multiple different levels of quantization, ranging from 2bit to 8bit, each with their own level of trade-off. For inference (as opposed to training), the drop in quality of the model does not scale linearly with the reduction in bits. For instance, there is very little difference in the quality of response from an 8-bit quantized model versus a full FP16 model, whereas there is a notable difference with a 2-bit. Think of it like going from a 10 mega-pixel image to a 5 mega-pixel image, then down to a 512x512 pixel image. We generally find the ‘sweet spot’ to be models of 4- or 5-bit quantization. This is important because smaller file sizes work faster and with less hardware.
 
 ### K-Quants
 
 'K-quants' are a newer form of quantization that changes how the quantization process works. While the exact difference between these and a ‘regular’ quant is complicated, they are generally smaller file sizes for the same quality of output, so GGML files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users. The Q4 describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
+
+![Faraday Quantization Dropdown](/images/model_quants.png)
+*Faraday has a selection of quants for each model listed, including the file size. We recommend Q4_k_M for a good combination of quality and speed.*
 
 ### Size vs. Perplexity Trade-Off
 
