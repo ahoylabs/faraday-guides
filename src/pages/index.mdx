@@ -1,69 +1,51 @@
-# What is Faraday?
+import Image from "next/image";
 
-![Banner](/images/banner.png)
+# Quick Start
 
-**Faraday is a chat application that enables rich, meaningful interactions with personalized AI.** It is designed to run locally on your device with zero configuration.
+**Faraday.dev** is a chat application that enables rich, meaningful interactions with personalized AI.
 
-- ⚒️ **Plug and Play**: Simply download the app, select a model and character, and start chatting. Zero coding knowledge required.
-- 💪 **Data Ownership**: Chat data is stored locally on your device, ensuring full privacy and control. You alone have ownership over your AI.
-- 🤖 **Community Characters**: Browse a catalog of diverse AI personalities designed by Faraday's vibrant creator community.
+The text-generation models powering Faraday run **directly on your device's hardware**. This local processing ensures complete privacy, keeps data in your hands, and prevents outside censorship.
 
-Faraday is currently a Desktop application, with mobile support coming soon. There is also a cloud option for enahnced speed and quality.
+You can use Faraday for roleplay, story-writing, productivity, and more. Browse our community [Character Hub](https://faraday.dev/hub) to see how others are using Faraday.
 
-Backed by a dedicated development team and a vibrant character creator community, Faraday keeps you at the forefront of AI without the learning curve.
+### Desktop Client
 
-Faraday simplifies the process of installing and running a local AI by providing a streamlined environment for finding the best AI models and characters and chatting with them. It prioritizes privacy by ensuring all of your chats remain private and local, while offering a cloud option for those who wish to see increased speeds or quality of models. Supported by an active development team and active community of character creators, Faraday ensures that you remain on the cutting edge of this technology without needing to spend time learning how to make it work. Whether you want to chat, roleplay or use it for productivity, Faraday will make running a local AI an easy and engaging experience.
+**Faraday** is available as a desktop application for MacOS Silicon, MacOS Intel, and Windows. You can download the client at [https://faraday.dev](https://faraday.dev).
 
-![Faraday Chat Screen](/images/Faraday_Chat_Screen.png)
+![Faraday App](/images/app.png)
 
-## What is LLaMa?
+### iOS & Android Clients
 
-LlaMa is a large language model (LLM) developed by Meta for use locally on consumer hardware. The LLaMa base model is a text completion model, meaning it will continue a given text, or ‘prompt’. The base LLaMa model comes in several sizes, each of which contain a different number of parameters, 7B, 13B, 33B and 65B. The number of parameters determines how specific the model’s text generation will match the input text. Higher parameter models give more nuanced and more accurate responses, but require significantly more memory and processing power to run. ChatGPT, for instance, is believed to be a significantly higher parameter model.
+(Coming soon...)
 
-Meta recently released LLaMa 2, an evolution of their model. LLaMa was trained to work with a context of 2048 tokens, while LLaMa 2 was trained to work with a context of 4096 tokens, meaning it is able to base its response on a larger amount of input text. (A token is approximately 3 letters). Additionally, LLaMa 2 gives higher quality output, meaning a smaller LLaMa 2 model should perform better than a larger LlaMa 1 model. As such, a LLaMa 2 7B model should perform equivalently to a LLaMa 13B model, for instance.
+## FAQ
 
-Other groups have fine-tuned the LLaMa base models to prefer completing text in certain ways, such as instruction following (instruct) or chat. Additionally, individuals have gone further, combining multiple fine-tuned models together in different ways to create models that combine different qualities.
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  );
+}
 
-Faraday is primarily used with LLama based chat fine-tuned models. These models have been trained to continue a back-and-forth conversation between two or more parties. The model continues generating text until it begins generating the user’s response, at which point it stops and allows you to add the user’s side of the chat, before continuing with the ‘character’ response.
+<FAQBox title="Can I use X with Nextra?">
+  The answer is “yes” for most things. Since Nextra is just a Next.js plugin, almost all the things
+  that can be done with React can be done with Nextra. Here are some examples and guides:
 
-## Tokens and Context
+- [Use Tailwind CSS](/docs/guide/tailwind-css)
+- [Use custom CSS and Sass](/docs/guide/custom-css)
+- [Use custom fonts](https://nextjs.org/docs/basic-features/font-optimization)
 
-Large Language Models (LLM)s generate the probability of the next portion of text based on the previous portion of text. To facilitate this, LLM’s work with tokens rather than letters or characters and base the probabilities on a certain number of previous tokens, or context.
+</FAQBox>
 
-### Tokens
-
-A token is a chunk of characters, typically about three characters long (with exceptions). LLM’s do not see individual letters, but instead break text into these tokens. When you send a prompt to the model, the first thing that happens is that it is converted into tokens by the tokenizer. (This step works fastest using the GPU, which is why we try to offload parts of the models to the GPU). The model then returns predicted tokens which are converted back into text for us to read.
-
-### Context
-
-The text that is sent to the LLM is called the context. The context is composed of any instructions, character info, chat history, and the current response. LLMs are trained to look at a certain amount of tokens when generating their response, so our context is limited. LLaMa 1 based models are limited to 2048 tokens of context, while LLaMa 2 based models can use 4096 tokens of context. Because of this limit, the amount of information sent to the model (the prompt) is limited, most often resulting in part of the chat history being removed. The information in the character info is always kept, unless it alone extends beyond the context window.
-
-Below is a visual of a text broken down into its tokens.
-
-![Tokenized Text](/images/tokenized_text.png)
-
-## Prompt Components
-
-![Context Diagram](/images/context_sent_diagram.png)
-
-The model you chat with is a static file that does not change. Instead, what changes is what we send to it with each of our responses. This information is composed of four general components: instructions, character info, chat history, and our current response. The information is sent to the model in this order with your response being the last thing it sees.
-
-### Instructions
-
-Most models are trained to accept instructions that help it define what text it will generate. In Faraday, instructions are found in the character info, under advanced. The default instructions used in Faraday have proven to work very well, but changing them may help tailor the output to what you want. Unfortunately, the models will not always perfectly follow these instructions, so do not expect instructions to be followed verbatim.
-
-### Character info
-
-As we are primarily using chat fine-tuned models, Faraday formats responses to assume a back and forth dialogue. Character info is where we define who the chat is between, what they are like, and in what scenario they are interacting. Most character cards focus on describing the character that will be played by the model, but you can also define information about the user here, or even other characters.
-
-### Chat history
-
-Chat history is simply the back and forth chat you and the model have had up until this point.
-
-### Response
-
-Your response is the last thing appended to the prompt that is sent to the model.
-
-## Rolling Context Window
-
-All of the information sent to the model must fit within the model context, typically 4096 tokens (a token is approximately three characters of text). The model does not see information beyond this context window, so we need to specify how our information is cutoff to fit. Faraday will always include the instructions, the character info and our response. The rest of our context is filled with chat history (a reason to be concise with character info is to leave more room for chat history.). When this exceeds the context window, after you’ve been chatting for a while, the oldest history starts being removed from the information sent to the model. If you find the model forgetting something you talked about an hour ago, this is why.
+<FAQBox title="How can I add a live coding component in Nextra?">
+  There are libraries like [Sandpack](https://sandpack.codesandbox.io) and
+  [react-live](https://github.com/FormidableLabs/react-live) that can help you
+  add live coding components to your MDX.
+</FAQBox>

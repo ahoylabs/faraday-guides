@@ -1,8 +1,17 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "%s – Faraday",
+      };
+    }
+  },
   logo: (
     <div>
       <Image src={"/favicon.png"} width={32} height={32} alt={"Logo"} />
@@ -32,6 +41,9 @@ const config: DocsThemeConfig = {
   },
   feedback: {
     content: "Suggestions? Open a Github Issue!",
+  },
+  toc: {
+    backToTop: true,
   },
 };
 
