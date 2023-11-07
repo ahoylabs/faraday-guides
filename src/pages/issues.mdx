@@ -31,23 +31,23 @@ If this fixes your issue, there was a problem with your installation.
 
 ## Why is my chat failing to complete the loading process?
 
-### You could be running GPU support incorrectly.
+### You could be running GPU support incorrectly
 
 - Go to the Settings page, set GPU acceleration to "None", and try again. If that works, it means your GPU settings are incorrect. Please ask for help on Discord.
 - Switch GPU mode to "Manual" in the settings, and set it to 10%. If that works, you can increase the percentage steadily until it breaks, which means you are out of memory.
 - Do NOT use an integrated GPU with Faraday.
 - Try uninstalling your GPU drivers and re-installing them to the latest version. There may be a driver mismatch.
 
-### You could be running out of memory.
+### You could be running out of memory
 
 Try setting the maximum context to 2048 in the "Settings" tab on the left sidebar. Then, create a brand new chat. If this works, your device cannot handle the previous context size with the model you were using.
 
-### You may be using an unsupported device or OS:
+### You may be using an unsupported device or OS
 
 For Mac, please make sure that you are using Mac OS 12 or later.
 
 For Windows, please make sure you are using Windows 8 or later.
 
-### You may have conflicting drivers or versions of Windows Visual Studio.
+### You may have conflicting GPU drivers
 
 On Windows CUDA, download the latest Nvidia Drivers: https://www.nvidia.com/Download/index.aspx?lang=en-us
