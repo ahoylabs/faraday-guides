@@ -1,0 +1,59 @@
+# Model Parameters
+
+The large language models (LLMs) used by Faraday determine the probability of the next token based on the tokens that came before it. Each generation is selected from a "pool" of hundreds of possible tokens, each with an associated probability.
+
+Unfortunately, we cannot just use the most probable token, as that will typically lead to boring and repetitive patterns. Instead, we use a number of samplers to reduce the pool of possible tokens to a more desirable set that is then randomly selected from.
+
+The following samplers are available in Faraday. Adjusting these parameters influence how conservative or how creative the models will be.
+
+![Samper](/images/model_settings.png)
+
+## Temperature
+
+- **Default:** 0.8
+- **Definition:** Value used to modulate the probablities for the next token. In other words, it controls how likely the model is to choose a less probably token.
+- **Explanation:** Temperature affects how improbable of a token can be selected next. A very low temperature setting (0 - 0.2) can lead to repetition as the model thinks that the most likely token is a repetition of the previous one (_"cat cat cat cat"_), while a very high temperature (2.0 or higher) can lead to nonsensical output as the next token is unrelated to the previous (_"cat tree stew"_). This ends up relating to how creative the model output will be. Typical values are between 0.5 (_"cat climbed a tree"_) and 1.2 (_"cat spoke eloquently"_).
+
+## Top P
+
+- **Default:** 0.9
+- **Definition:** Reduces the pool to tokens with high probability of appearing next (probabilities adding up to the top P value or higher.)
+- **Explaination:** Top P ensures that the token selection pool is limited to only very likely tokens, while taking into account that there may not be many tokens in the resulting pool. If your next token is completing the sentence _"The door swung"_, there will be a small number of high probability tokens that will add up to the 0.9 threshold. ("closed", "open", "wide", for instance.). However, if you are completing a somewhat strange sentence, like _"The door puffed into"_, there won't be many super-probable tokens, so your pool will be larger - it will take more probabilities to add up to 0.9 ("dust", "space", "a cloud", "existence", "the room", "smoke"). This ensures that your token pool adjusts size based on the relative probabilities of tokens.
+
+## Top K
+
+- **Default:** 30
+- **Definition:** The number of high probabilty tokens that are kept in the selection pool.
+- **Explanation:** Similar to Top P, but less dynamic. Top K is just saying "only keep this number of tokens inside the selection pool". This is a simple way of removing most tokens from the pool, but if you have three very probable tokens and then a big drop off in probabilities, you may end up with a pool that contains mostly junk.
+
+## Repeat Penalty
+
+- **Default:** 1.0\*
+- **Definition:** How heavily a repeating token is penalized.
+- **Explanation:** To avoid unnecessary repetition of words, repeat penalty looks at past tokens to reduce the probability of selecting a token that has already occured. A value of 1.0 is inactive. A number below that will encourage repetition and a higher number will discouage. Typical values range between 1.0 - 1.2.
+
+\*Faraday defaults repeat penalty to be inactive as it behaves poorly when mirostat is turned on.
+
+## Repeat Penalty Tokens
+
+- **Default:** 128
+- **Definition:** The subset of trailing tokens in the context that is considered when applying the repeat penalty.
+- **Explanation:** Adjust this to determine how far back repetition penalty looks in the context. Increasing this will make outputs more conservative.
+
+## Mirostat
+
+- **Default:** Enabled
+- **Definition:** Mirostat adjusts the Top K dynamically to create a pool of tokens that will lead to a specific level of perplexity, or creativity. Note that Faraday uses Mirostat 2, not Mirostat 1.
+- Explanation: Mirostat replaces the static Top K value with a dynamically adjusted Top K that adjusts the size of the token pool to ensure a desired level of creativity. It's a complicated system but works well to make model responses sound natural while maintaining creativity. Note that while you can use repetition penalty with Mirostat enabled, we have found that doing so leads the model to quickly devolve into nonsense.
+
+## Mirostat Learning Rate
+
+- **Default:** 0.1
+- **Definition:** Learning rate determines how quickly the entropy (amount of creativity) is adjusted.
+- **Explanation:** A higher learning rate will more quickly correct the entropy of the next token. The authors of the Mirostat paper recommend 0.1, but a value between 0.05 - 0.2 can be used.
+
+## Mirostat Entropy
+
+- **Default:** 5.0
+- **Definition:** The desired tau, or perplexity value that mirostat will aim to achieve.
+- **Explanation:** Increasing Mirostat Entropy will increase the perplexity target, leading to less coherent, but more creative output; lowering the value will be more coherent, but can cause repetition and 'boredom'. Some sources recommend that you set the entropy based on the size of the model: 5 for a 13B model, 6 for a 7B model and 4 for a 70B model.
