@@ -2,16 +2,14 @@
 
 ## What is LLaMa?
 
-LLaMa is a large language model (LLM) developed by Meta to run locally on consumer hardware.
+LLaMa is a large language model (LLM) developed by Meta.
 
-The LLaMa base model is a text completion model, meaning it will continue a given text, also known as a "prompt". It comes in several sizes, each of which contain a different number of parameters: 7B, 13B, 33B and 65B. The number of parameters determines how well the model’s text generation will logically match the input text. Higher parameter models give more nuanced and more accurate responses, but require significantly more memory and processing power to run. ChatGPT, for instance, is believed to have an extremely large number of parameters.
+The LLaMa base model is a completion model, meaning it will generate text that "completes" a given input sequence, also known as a prompt. The base model comes in several sizes, each of which contain a different number of parameters: 7B, 13B, 33B and 65B. The number of parameters determines how well the model’s text generation will logically match the input text. Higher parameters means more nuanced and accurate responses, while requiring significantly more processing power.
 
-Meta recently released LLaMa 2. While LLaMa1 was trained to work with a context of 2048 tokens, LLaMa 2 was trained to work with a context of 4096 tokens (a token is approximately 3 letters). That means it is able to base its response on a larger amount of input text.
+Meta recently released LLaMa 2. While LLaMa 1 was trained to work with a maximum context of 2048 tokens (a token is approximately 3 letters), LLaMa 2 was trained with a maximum context of 4096 tokens. That means it is able to base its response on a larger amount of input text.
 
-Additionally, LLaMa 2 generates higher quality outputs, meaning a smaller LLaMa 2 model should perform better than a larger LLaMa 1 model. Thus a LLaMa 2 7B model should perform equivalently to a LLaMa 13B model.
+LLaMa 2 also generates higher quality outputs. For example, a LLaMa 2 7B model should perform equivalently to a LLaMa 13B model.
 
-Third parties have fine-tuned the LLaMa base models to prefer completing text in a custom way, such as instruction following (instruct) or chat. Additionally, some model fine-tuners have gone further, merging multiple versions together in different ways to create models that combine different qualities.
+Third parties have fine-tuned the LLaMa base models to generate text in a personalized way, such as instruction following, coding, or roleplay chat. Additionally, some have figured out how to merge multiple fine-tuned models together to create a new model that combines certain qualities in creative ways.
 
-**Faraday is primarily used with LLaMa based chat fine-tuned models.** These models have been trained to continue a back-and-forth conversation between two or more parties. The model continues generating text until it begins generating the user’s response, at which point it stops and allows you to add the user’s side of the chat.
-
-## What are tokens and context?
+**Faraday is primarily used with LLaMa 2 models fine-tuned for long chat conversations.** These models have been trained to continue a back-and-forth dialogue between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
