@@ -1,6 +1,12 @@
 # Concepts & Terms
 
+**Faraday is primarily used with LLaMa 2 models fine-tuned for dialogue.**
+
+These models have been trained to continue a back-and-forth conversation between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
+
 ## LLaMa
+
+### What is LLaMa?
 
 **LLaMa is a large language model (LLM) developed by Meta.**
 
@@ -10,15 +16,13 @@ The number of parameters (counted in the billions) determines how well the model
 
 **Meta recently released LLaMa 2**. While LLaMa 1 was trained to work with a maximum context of 2048 tokens, LLaMa 2 was trained with a maximum context of 4096 tokens. That means it is able to base its response on a larger amount of input text. LLaMa 2 also generates higher quality outputs. Consequently, a LLaMa 2 model with 7B parameters should perform equivalently to a LLaMa 1 model with 13B parameters.
 
-### Fine-tuning
+### What is fine-tuning?
 
-Third parties have fine-tuned the LLaMa base models to generate text in a customized way, such as ChatGPT-style instruction-following, programming assistance, or roleplay chat. There are even methods to "merge" fine-tuned models together to combine desired qualities in creative ways.
+Model fine-tuning involves adjusting the parameters of a pre-trained model so that it adapts to a new, but related, task. This process leverages the base model's features, while also training them on a specific dataset to coerce outputs.
 
-### Usage on Faraday
+Third parties have fine-tuned the LLaMa base models to generate text in specific ways, such as ChatGPT-style instruction-following, programming assistance, or roleplay chat. There are even methods to "merge" fine-tuned models together to combine desired qualities in creative ways.
 
-**Faraday is primarily used with LLaMa 2 models fine-tuned for long conversations.**
-
-These models have been trained to continue a back-and-forth dialogue between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
+The fine-tuned models available on Faraday have been trained on conversational datasets.
 
 ## Tokens
 

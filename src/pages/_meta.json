@@ -1,10 +1,8 @@
 {
   "index": "Quick Start",
-  "concepts": "Basic Concepts",
-  "character-creation": "Character Creation",
-  "device": "Device Configuration",
+  "model-startup": "Common Issues",
   "faq": "FAQ",
-  "common-issues": "Common Issues & Bugs",
+  "character-creation": "Character Creation",
   "hub": "Character Hub",
-  "imports": "Imports"
+  "imports": "Imports & Exports"
 }

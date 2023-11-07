@@ -43,7 +43,7 @@ const config: DocsThemeConfig = {
     content: "Suggestions? Open a Github Issue!",
   },
   sidebar: {
-    defaultMenuCollapseLevel: 0,
+    defaultMenuCollapseLevel: 2,
   },
   toc: {
     backToTop: true,
