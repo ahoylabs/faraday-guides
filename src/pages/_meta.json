@@ -1,8 +1,7 @@
 {
   "index": "Quick Start",
-  "model-startup": "Common Issues",
+  "issues": "Common Issues",
   "faq": "FAQ",
   "character-creation": "Character Creation",
-  "hub": "Character Hub",
-  "imports": "Imports & Exports"
+  "hub": "Character Hub"
 }
