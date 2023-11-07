@@ -1,0 +1,45 @@
+# Concepts & Terms
+
+## LLaMa
+
+**LLaMa is a large language model (LLM) developed by Meta.**
+
+The LLaMa base model is a completion model, meaning it will generate text that "completes" a given input sequence, also known as a prompt. The base model comes in several sizes, each one with a different number of parameters: 7B, 13B, 33B and 65B.
+
+The number of parameters (counted in the billions) determines how well the model’s text generation will logically match the input text. A higher parameter count means more nuanced and accurate responses, while also requiring significantly more processing power.
+
+**Meta recently released LLaMa 2**. While LLaMa 1 was trained to work with a maximum context of 2048 tokens, LLaMa 2 was trained with a maximum context of 4096 tokens. That means it is able to base its response on a larger amount of input text. LLaMa 2 also generates higher quality outputs. Consequently, a LLaMa 2 model with 7B parameters should perform equivalently to a LLaMa 1 model with 13B parameters.
+
+### Fine-tuning
+
+Third parties have fine-tuned the LLaMa base models to generate text in a customized way, such as ChatGPT-style instruction-following, programming assistance, or roleplay chat. There are even methods to "merge" fine-tuned models together to combine desired qualities in creative ways.
+
+### Usage on Faraday
+
+**Faraday is primarily used with LLaMa 2 models fine-tuned for long conversations.**
+
+These models have been trained to continue a back-and-forth dialogue between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
+
+## Tokens
+
+Large Language Models (LLM)s generate text by calculating **which words are most likely to come next based on a given input sequence**. This calculation requires that words be converted to numbers, i.e. "tokens". A token is approximately 3-4 letters.
+
+When you send a prompt to the model, the input text is immediately tokenized. The model proceeds to predict tokens one-by-one, which are each converted back into text for us to read.
+
+Here is a visualization of text broken into tokens:
+
+![Tokenization](/images/tokenized_text.png)
+
+## Context
+
+The prompt tokens processed by the LLM to generate the next token is called the context.
+
+The dataset used to train a model determines the maximum context size. LLaMa 1-based models are limited to 2048 tokens of context, while LLaMa 2-based models can take in up to 4096 tokens of context.
+
+## Rolling Context Window
+
+All of the information sent to the model must fit within the model's context. The model does not see information beyond this context window, so we need to specify how our information is cutoff to fit.
+
+Faraday will always include the instructions, the character info, and our response in the context. The rest is filled with chat history. We encourage you to keep your character prompts concise in order to leave more room for this chat history.
+
+When the conversations history starts to exceed the context window, the older history starts being removed incrementally from the model context. If you find the model forgetting something you talked about an hour ago, this is why.
