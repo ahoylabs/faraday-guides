@@ -1,4 +1,10 @@
 {
   "index": "Quick Start",
-  "get-the-app": "Get the app"
+  "concepts": "Basic Concepts",
+  "character-creation": "Character Creation",
+  "device": "Device Configuration",
+  "faq": "FAQ",
+  "common-issues": "Common Issues & Bugs",
+  "hub": "Character Hub",
+  "imports": "Imports"
 }
