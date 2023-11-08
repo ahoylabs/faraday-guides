@@ -1,10 +1,8 @@
 {
-  "index": "Introduction",
+  "index": "Quick Start",
   "faq": "FAQ",
   "models": "Models",
-  "character-creation": "Creating Characters",
-  "character-hub": "Character Hub",
-  "chat-experience": "Chat Experience",
-  "troubleshooting": "Troubleshooting",
-  "advanced-features": "Advanced Features"
+  "character-creation": "Characters",
+  "hub": "Character Hub",
+  "issues": "Common issues"
 }

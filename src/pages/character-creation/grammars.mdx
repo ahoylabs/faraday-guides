@@ -1,0 +1,76 @@
+# Grammars (Advanced)
+
+A grammar is a set of rules specifying how the model should format its output. Grammars are written in the Baku’s-Naur Format (BNF). On Faraday, you can add a BNF grammar to your character to ensure that it responds with a very specific structure.
+
+## Syntax
+
+- `::=` &emsp; &emsp; Assigns an expression. E.g., `number ::= (0,1,2,3,4,5,6,7,8,9)`.
+- `*` &emsp; &emsp; &ensp; 0 or more occurrences of the previous item. E.g., `("x")*` outputs 0 or more X's.
+- `+` &emsp; &emsp; &ensp; 1 or more occurrences. E.g., `("x")+` outputs 1 or more X's.
+- `?` &emsp; &emsp; &ensp; 0 or 1 occurrence. Can be replaced by `[...]`.
+- `[...]` &emsp; Anything in brackets is optional. E.g., `'[-] "1"'` outputs 1 or -1.
+- `x | y` &emsp; A choice between items. `("+" | "-")` outputs + or -.
+- `(...)` &emsp; Groups items. In `(a | b) + c`, you get a or b, then c.
+- `^...` &emsp; &nbsp; Anything but the following. `[^\r\n]*` outputs any character except return or enter.
+- `"..."` &emsp; Outputs text directly.
+- `"\n"` &emsp; &nbsp; Special characters in quotes.
+- `root` &emsp; &nbsp; Every grammar must start with a root expression. Also note that expression names cannot be capitolized.
+
+The grammar is then composed of expressions, each of which can contain other expressions, or specific output. Each expression definition is separated by a new line. A very simple example of a grammar would be:
+
+```
+root ::= "hello " name
+name ::= "John"
+```
+
+## Usage In Faraday
+
+Within your character's settings, scroll down to the "Grammar" field. Enter your grammar here and save. The grammar will now be applied to your character's responses.
+
+A few tips:
+
+- The grammar can guide and frame the text generation, but does not control it completely. The model will still try to output the most probable next token. If you are asking it to write a token that isn't likely to occur, it will just work around your request.
+- If your grammar removes all of the likely next tokens from the sampling pool, your generation will slow down or stall out.
+- Expressions that contain layers of `[…]*` or `[…]+` can lead to stall-outs because the LLM needs to apply multiple layers of grammar calculations, rather than just one. Ideally, you want to give any `+` or `*` statement an "exit condition", such that each one has a distinct end. For instance `[“X”]+ “\n”` will produce X’s until the model chooses to generate a new line, and then that statement is done.
+- The quotation mark is a part of the BNF grammar syntax. As such, to output a quotation mark, you may need to write it as `\”` to tell the grammar that it is a character. This is not required inside a bracket statement, as they are character-based and quotations cannot function within them.
+
+## Examples
+
+Sample grammar for a Roleplay where the AI plays three different characters. Change the character names to suit your chat.
+
+```
+root ::= action character (character | action)* "\n#"
+narration ::= "Scene:" action
+action ::= " *" dialogue "* "
+dialogue ::= [a-zA-Z .,'?!:;0-9]+
+character ::= "\n--" ("Cassandra" | "Tessa" | "Britney") ": " (action)? dialogue
+```
+
+A basic chat grammar that will always start with actions/descriptions in asterisks, followed by dialogue and more actions as the model sees fit.
+
+```
+root ::= action dialogue (action | dialogue)* "\n#"
+action ::= " *" [^\r\n#]+ "* "
+dialogue ::= [^\r\n#]+
+```
+
+A grammar made to control the output of a character that writes Stable Diffusion Prompts, guiding the AI to add weights.
+
+```
+root ::= combo [combo] combo [combo]*
+object ::= [a-zA-Z" "]+
+weight ::= [0-1] "." [0-9] [0-9]
+combo ::= ["("]? object [":" weight ") "]?
+```
+
+A grammar to always respond with at least three paragraphs.
+
+```
+root ::= text "\n" text "\n" text "\n" "\n#"
+text ::= [a-zA-Z0-9,.?!" ':;\n]+
+```
+
+## More Resources
+
+- [The Grammar File Format](https://matt.might.net/articles/grammars-bnf-ebnf/)
+- [Official Llama.cpp README](https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md)

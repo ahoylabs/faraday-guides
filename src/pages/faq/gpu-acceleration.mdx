@@ -1,0 +1,27 @@
+# GPU (Graphics Card) Acceleration
+
+**Faraday supports GPU acceleration out of the box, without the need for any manual configuration.** The app will optimize the number of model layers offloaded to your GPU, based on your hardware and the model you selected.
+
+## Mac
+
+Faraday automatically utilizes Mac Metal, Apple's hardware-accelerated graphics API, to accelerate your text generations. There is no need for any configuration.
+
+## Windows
+
+### Automatic Mode
+
+1. Open Faraday's settings page in the left sidebar.
+2. Navigate to the "GPU Support" section and pick your dedicated GPU (do not use an integrated GPU).
+3. Keep the "Auto GPU" setting enabled unless you are an advanced user.
+
+Faraday will now use your GPU for text generation!
+
+![Metrics](/images/gpu_support.png)
+
+### Manual Mode
+
+Advanced users can set their virtual RAM (VRAM) allocation manually.
+
+Please exercise caution. Every system configuration uses VRAM differently. If you get within about 300MB of your GPU's available VRAM, you will start using shared memory, which is slow and inefficient.
+
+**Faraday's automatic GPU mode should always "just work", while manual may need regular adjustments even if it worked on previous runs.**

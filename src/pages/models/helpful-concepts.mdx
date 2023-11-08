@@ -1,0 +1,37 @@
+# Helpful Concepts & Terminology
+
+**Faraday is primarily used with LLaMa 2 models that have been fine-tuned for conversations.**
+
+These models have been trained to continue a back-and-forth dialogue between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
+
+## LLaMa
+
+### What is LLaMa?
+
+**LLaMa is a large language model (LLM) developed by Meta.**
+
+The base model comes in several sizes, each one with a different number of parameters: 7B, 13B, 33B and 65B. A higher parameter count means more nuanced and accurate responses, while also requiring significantly more processing power.
+
+### What is fine-tuning?
+
+The LLaMa base models can be fine-tuned to generate text in a specific style, such as instruction-following, programming assistance, or roleplay. Fine-tuning involves tweaking the parameters of the base model by training on a customized dataset.
+
+The fine-tuned models available on Faraday have been trained on conversational datasets by various third parties.
+
+## Tokens
+
+Large Language Models (LLM)s generate text by calculating **which words are most likely to come next based on a given input sequence**. This calculation requires that words be converted to numbers, i.e. "tokens". A token is approximately 3-4 letters.
+
+Here is a visualization of text broken into tokens:
+
+![Tokenization](/images/tokenized_text.png)
+
+## Context
+
+The exact set of tokens processed when generating the next token is called the "context".
+
+Models can only process a certain amount of context at once. LLaMa 1-based models are limited to a maximum of 2048 tokens, while LLaMa 2-based models can take in up to 4096 tokens.
+
+### Context Window
+
+When your conversation history starts to exceed the context window, the older messages are removed incrementally from the model context. If you find the model forgetting something you talked about an hour ago, this is why.

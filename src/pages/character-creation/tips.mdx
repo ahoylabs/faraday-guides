@@ -1,0 +1,79 @@
+# Helpful Tips
+
+There is no one-size-fits-all approach to character creation. It can take quite a bit of experimentation to get exactly what you want out of your character. Below are some tips to help you avoid common mistakes.
+
+### Prompt Length
+
+We recommend that you limit your character's prompt to **1000 tokens or less** (the count will be displayed prominently on the page). The more tokens in the prompt, the less chat history will be kept in context, making your character more likely to "forget" previous information. A few strategies for keeping your prompt length down:
+
+1. Prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing.
+2. You can often cover multiple qualities with a single keyword. For instance, if you refer to your character as “she”, or give the character a feminine name, you probably don’t have to specify explitly that she is female.
+
+### Logical Reasoning
+
+Character prompts should be as specific as possible and require no logical reasoning from the model. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. This could be rewritten as “Joan is Sarah’s mother and Joan is tall.”
+
+**Prompts that require the model to make logical inferences are more likely to result in poor responses.**
+
+### Formatting
+
+Below are examples of four popular formatting methods.
+
+Natural Language:
+
+```
+Character is a loving husband and wonderful friend, whose life revolves around his family. Character is smart and thoughtful, often helping others with his knowledge. Character was raised in New York, but has settled in Basil where he moved after receiving his doctorate in political science.
+```
+
+Natural Language Lists:
+
+```
+Character is a husband, good friend, family man. Character is smart, thoughtful, helpful, doctorate in political science. Character lives in Basil, raised in New York.
+```
+
+Formatted Lists:
+
+```
+Character[
+personality = (smart, thoughtful, helpful.)
+Relationships = (husband, good friend, family.)
+Education = (doctorate in political science.)
+Location = (currently Basil, raised in New York.)]
+```
+
+JSON:
+
+```
+{
+    "character_name": "Character",
+    "age": 34,
+    "gender": "Male",
+    "occupation": "Political Scientist",
+    "physical_description": {
+        "height": "5'10",
+        "build": "Slim and athletic",
+        "hair_color": "brown",
+        "eye_color": "hazel"
+    },
+    "personality_traits": ["Smart", "Helpful", "Thoughtful"]
+}
+
+```
+
+### Influencing Response Style
+
+The two most powerful ways to influence response style are:
+
+1. **Example Dialogue and First Message:** Provide example dialogue and a first message that is representative of how you want your character to respond. The model will use this information to learn how to respond in a similar style. The example dialogue and first message can be found in the "Advanced Mode" section of the character creation form.
+
+2. **Editing responses early in the conversation:** You can edit incoming responses from your character as they come in to enforce speaking style and/or formatting. By doing so early in the conversation history, you can "teach" the model how you want it to respond in the future. The edit button can be found by hovering over the response you want to edit.
+
+### Basic vs. Advanced Mode
+
+There are two modes for creating a character:
+
+- **"Basic Mode"** is the easiest way to get started. All you need to provide is a short description of your character, and Faraday will provide a default set of model instructions and parameters
+  behind the scenes.
+- **"Advanced Mode"** gives you fine-grained control over every aspect of how your character behaves. Use this mode if you want to create a more complex character.
+
+![Create](/images/create.png)

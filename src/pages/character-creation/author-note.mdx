@@ -1,0 +1,31 @@
+# Author's Note
+
+The author's note is a special feature that allows you to insert additional context immediately prior to the last user response. It is a way to influence the direction of the AI response without having to edit the character's prompt.
+
+### Use cases
+
+Uses of author's note include:
+
+- specifying a genre or tone for the next response
+- adding context on how the character is currently feeling, where they are, or any helpful details on the current situation
+- a summary of important events from the chat history
+
+### Usage in Faraday
+
+The text you write in the author's note can be changed at any time, allowing you to influence the next response on the fly.
+
+![Edit](/images/authors-note.png)
+
+### Example
+
+`genre: horror; style: suspenseful with building dread; current location: woods behind the abandoned house. {character} and {user} both suspect each other is the killer.`
+
+The example includes instructions on the current style and atmosphere, as well as details about what is happening right now (as opposed to an overall scenario).
+
+### Addition to model instructions (optional)
+
+It may help to add something along the following lines to your model instructions to make the author's note more effective:
+
+```
+When prompted with [square brackets], you will interrupt your usual roleplay routine and use your next response to fulfill whatever request is given to you within the [square brackets].
+```

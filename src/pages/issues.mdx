@@ -1,0 +1,51 @@
+# Troubleshooting Common Issues
+
+If you are unable to solve your issue using the tips below, please contact the developers by opening a bug report on [Discord](https://discord.gg/Ng4vmcDfqr).
+
+_As a last resort, you can perform a [hard reset](https://docs.faraday.dev/faq/factory-reset) to restore the app to its default state. Note that this will delete all your data._
+
+## Chat fails to load or displays an error
+
+### Clear memory on your device
+
+- Restart the Faraday app.
+- Restart your computer.
+- Quit all other apps that might be using a lot of memory.
+
+If this fixes your issue, other programs on your computer were consuming too many resources, preventing Faraday from running correctly.
+
+### Test a new character with a lower context size
+
+- Change your context size to 2048 on the "Settings" page on the left sidebar.
+- Create a brand new character (the default Faraday assistant is fine).
+- Create a new chat and try to load the model.
+
+If this fixes your issue, your device cannot handle the default context size of 4096. Use a smaller model, or lower your context size permanently.
+
+### Run the installer again
+
+- Download the latest installer on https://faraday.dev/ and run it again (you will not lose any data).
+- Create a brand new character.
+- Try to load a new chat.
+
+If this fixes your issue, there was a problem with your installation.
+
+### Check GPU settings
+
+Go to the "Settings" page in the left sidebar:
+
+- Set GPU acceleration to "None", and try again. If that works, it means your GPU settings are not valid.
+- Switch GPU mode to "Manual", and set the value to 10%. If that works, increase the percentage steadily until the model does not load anymore. Select the highest value that works.
+- Do NOT use an integrated GPU with Faraday.
+
+For more information on GPU settings, see [this page](https://docs.faraday.dev/faq/gpu-acceleration).
+
+### Check if you have conflicting GPU drivers
+
+On Windows CUDA, download the latest Nvidia Drivers: https://www.nvidia.com/Download/index.aspx?lang=en-us
+
+### Make sure you are on a supported device and OS
+
+For Mac, please make sure that you are using Mac OS 12 or later.
+
+For Windows, please make sure you are using Windows 8 or later.

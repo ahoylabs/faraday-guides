@@ -1,8 +1,18 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "%s – Faraday",
+      };
+    }
+  },
+  logoLink: "https://faraday.dev",
   logo: (
     <div>
       <Image src={"/favicon.png"} width={32} height={32} alt={"Logo"} />
@@ -23,6 +33,22 @@ const config: DocsThemeConfig = {
       <link rel="icon" href="/favicon.png" />
     </>
   ),
+  // this is a hack to hide the edit link
+  editLink: {
+    text: "Edit this page on GitHub",
+    component: () => {
+      return <></>;
+    },
+  },
+  feedback: {
+    content: "Suggestions? Open a Github Issue!",
+  },
+  sidebar: {
+    defaultMenuCollapseLevel: 2,
+  },
+  toc: {
+    backToTop: true,
+  },
 };
 
 export default config;

@@ -1,0 +1,36 @@
+# Lorebooks (Advanced)
+
+There are limits to the amount of information we can fit into our character's prompt. However, there may be some information that you want the AI to understand outside of this permanent context.
+
+This is where a Lorebook, also known as World Info, comes into play. Each item in the Lorebook is a keyword with an associated value. When this keyword is used in your chat, the entry is added dynamically to the chat context so that the model understands what you are referring to.
+
+Lorebooks can be especially helpful for characters adapted from a fictional world. You can easily define a vast amount of important information about the world without overloading your character's prompt.
+
+### Basic Example
+
+```
+keyword: home
+value: A two story house on a cul-de-sac in a middle class neighborhood. {user}'s bedroom is on the top floor. The house is cozy.
+```
+
+In this example, whenever you or your character mentions _"home"_, the associated keyword and value are added to the context. This data is injected immediately before the last two chat messages. If the character is supposed to be your longtime friend, this is something they should know, but it's not necessarily something that belongs in the character's prompt.
+
+### Usage in Faraday
+
+Scroll down within character settings to **World Info (Lorebooks)**. Click New Item which will bring up a Keyword / Value pair. Enter as many associated keywords as you like (eg. home, house, pad) and then the associated entry. Then save your changes and you are ready.
+
+![Lorebook](/images/lorebook.png)
+
+### Brevity
+
+Note that the number of tokens allowed to be used by Lorebooks is limited to 384 tokens, so as not to prevent your chat history from being completely removed. As such, it is recommended to write concise entries for each keyword. Remember that you may have more than one Lore Item triggered at one time, so they can add up quickly.
+
+### Notes on Implementation
+
+- **Lore will remain in context only if the keyword appears in the most recent four messages of your chat history.**
+- Lore entries can have multiple keywords associated.
+- Lore keywords are not case sensitive, so “Den” would match with “den”, or “dEN”.
+- If multiple keywords are found, lore entries are not repeated.
+- Lore entries cannot trigger other lore keywords. Lore entries are not searched within when finding Lore keywords.
+- The keyword search will match partial words, meaning the lore keyword “den” will match with “hidden” in the chat history.
+- Keywords can be multiple words, but the full string must be matched exactly to trigger a lore insertion. For example, a keyword of “the den” will not be triggered by “hidden” in the chat history, because it does not contain the full keyword.
