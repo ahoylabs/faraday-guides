@@ -1,29 +1,19 @@
 # Helpful Tips
 
-There are two modes for creating a character:
+There is no one-size-fits-all approach to character creation. It can take quite a bit of experimentation to get exactly what you want out of your character. Below are some tips to help you avoid common mistakes.
 
-- **"Basic Mode"** is the easiest way to get started with a new character. All you need to provide is a short description, and Faraday will provide a default set of model instructions and parameters
-  behind the scenes.
-- **"Advanced Mode"** gives you fine-grained control over every aspect of how your character behaves. Use this mode if you want to create a more complex character.
+### Prompt Length
 
-![Create](/images/create.png)
+We recommend that you limit your character's prompt to **1000 tokens or less** (the count will be displayed prominently on the page). The more tokens in the prompt, the less chat history will be kept in context, making your character more likely to "forget" previous information. A few strategies for keeping your prompt length down:
 
-## Helpful Tips
+1. Prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing.
+2. You can often cover multiple qualities with a single keyword. For instance, if you refer to your character as “she”, or give the character a feminine name, you probably don’t have to specify explitly that she is female.
 
-Each field within the character creation form will be merged into a single text string and sent to the model. There is no one-size-fits-all approach to character creation; it can take experimentation to get exactly what you want.
+### Logical Reasoning
 
-### Length
+Character prompts should be as specific as possible and require no logical reasoning from the model. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. This could be rewritten as “Joan is Sarah’s mother and Joan is tall.”
 
-We recommend that you limit your character's prompt to **1000 tokens or less**. The more tokens your character takes up, the less chat history will be kept in context, making your character appear to "forget" previous information.
-
-Here are some tips:
-
-- Prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing.
-- You can often cover multiple qualities with a single keyword. For instance if you refer to a. Character as “she” at any point or give the character a feminine name, you probably don’t have to say explitly that she is female.
-
-### Specificity
-
-Character prompts should be specific and require no logical reasoning from the model. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. This could be rewritten as “Joan is Sarah’s mother and Joan is tall.”
+**Prompts that require the model to make logical inferences are more likely to result in poor responses.**
 
 ### Formatting
 

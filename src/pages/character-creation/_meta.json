@@ -1,6 +1,7 @@
 {
   "tips": "Helpful tips",
-  "prompt-fields": "Prompt fields",
+  "prompt-fields": "Writing the prompt",
+  "formatting": "Response formatting",
   "grammars": "Grammars",
   "lorebooks": "Lorebooks",
   "author-note": "Author's note"
