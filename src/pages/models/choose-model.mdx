@@ -1,55 +1,31 @@
 # Choosing a Model
 
-Faraday makes it easy to find the latest and best open source models, any of which can be used to power your conversations.
-
-You can browse and download models directly from the in-app Model Manager. It is updated frequently as new models are released.
-
-**Models are downloaded directly to your hard drive.**
+You can browse a list of models compatible with Faraday on the "Manage Models" page. **Each model file can be downloaded directly to your hard drive from within the app.** This list is updated frequently with new models created by the open source community.
 
 ![Manager](/images/model_manager.png)
 
-## File Formats
+### File Formats
 
-There are multiple Large Language Model (LLM) file formats. The three most common ones are FP16, GPTQ, GGUF, and GGML. FP16 is the original file created via training; GPTQ is a format used for inference fully on the GPU; GGML and GGUF are for running on the CPU.
+**Faraday works with GGUF files**. Each model displayed in the Model Manager is a GGUF file. GGML files may work but are deprecated.
 
-**Faraday works with GGUF files**. All the files on Faraday's supported models list are GGUF. GGML files may work but are deprecated.
+Other file types, such as FP16, GPTQ, and AWQ are not supported.
 
-## Quantization
+### Quantization
 
-### Overview
+GGUF/GGML model files are quantized, which means they are compressed to a smaller size than the original model. This allows them to run on consumer hardware (such as your computer). There is a trade-off between quantization level and output quality.
 
-GGUF/GGML model files are quantized, which means they are compressed to a smaller size than the original model. This allows them to run on lower-end hardware, such as consumer devices. Of course, there is a trade-off between quantization level and output quality. You can compare it to image compression, where reducing the size eventually results in pixelation.
-
-A helpful way of visualizing the impact of quantization is to consider the range of possible responses to the question "Tell me about pizza".
-
-- With Q1 you have two possible outputs: 'It's good', and 'It's bad'.
-- With Q2 you have four possible outputs: 'It's excellent', 'It's good', 'It's okay", and 'It's bad'.
-- With Q3 you have eight possible outputs: 'It's excellent', 'It's very good', 'It's good', 'It's decent', 'It's okay', 'It's kind of bad', 'It's bad', 'It's horrible'. ...And so on with Q4, Q5, Q6, and Q8.
-
-For the pizza example, we might only need one answer: 'It's great', but for a more complex input, you will likely want the model to have more nuance (and thus, a different quantization level with more precision). This analogy is an oversimplification, but it's a good way to think about the trade-off between quantization and quality.
-
-For inference (text-generation), the drop in quality does not scale linearly with the reduction in bits. There is very little difference in the quality of response from an 8-bit quantized model versus a full FP16 model. However, you will see a notable difference when compared to a 2-bit model.
-
-### K-Quants
-
-Faraday supports model files derived using the "K-quants" quantization method. The "Q4" describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
-
-**GGUF files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users.**
+**GGUF files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users.** The "Q4" describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
 
 ![KQuant](/images/model_quants.png)
 
-## Parameter Size (3B, 7B, 13B, 30B, 33B, 70B)
+### Parameter Size (3B, 7B, 13B, 30B, 33B, 70B)
 
 The "B" number represents the number of parameters within the base model. If quantization is like changing the resolution of an image, then parameters are the number of colors in the image; 70B is HDR and 3B is a gif from the 90s.
 
 Faraday will give you some guidance on which number of parameters to use, with the most popular being 7B and 13B. A 13B should be able to run on 16GB of RAM, while a 7B should work on 8GB of RAM. For those with beefy machines, you can try your luck with a 33B or 70B model, though regardless of your system’s specs, those will be considerably slower.
 
-If you just came from ChatGPT, Poe, Character.ai, etc., please keep in mind that the models you can run locally on your machine are different than models used by online services. For instance, ChatGPT-4 is believed to have 1.76 trillion parameters, which is a lot more than 13 billion.
-
-Still, 70B models exhibit similar performance to ChatGPT 3 in real world testing, and 7B or 13B models can be perfectly usable if you keep their limits in mind. Generally, the larger the model, the more nuanced it's responses will be and the better it will follow context and instructions.
-
 ### Size vs. Perplexity Tradeoff
 
-Perplexity is a metric for the quality of text generations. A lower perplexity value is better.
+Perplexity is a metric for the quality of text generations. A lower perplexity value is better. Here is a charge comparing the perplexity of different model quantizations and parameter sizes:
 
 ![Quant](/images/quants.png)
