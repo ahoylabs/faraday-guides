@@ -4,11 +4,13 @@ Faraday makes it easy to find the latest and best open source models, any of whi
 
 You can browse and download models directly from the in-app Model Manager. It is updated frequently as new models are released.
 
+**Models are downloaded directly to your hard drive.**
+
 ![Manager](/images/model_manager.png)
 
 ## File Formats
 
-There are multiple Large Language Model (LLM) file formats. The three most common ones are FP16, GPTQ, GGUF, and GGML. FP16 is the original model created through training; GPTQ is a format used for inference fully on the GPU; GGML and GGUF are for running on the CPU.
+There are multiple Large Language Model (LLM) file formats. The three most common ones are FP16, GPTQ, GGUF, and GGML. FP16 is the original file created via training; GPTQ is a format used for inference fully on the GPU; GGML and GGUF are for running on the CPU.
 
 **Faraday works with GGUF files**. All the files on Faraday's supported models list are GGUF. GGML files may work but are deprecated.
 
@@ -16,21 +18,23 @@ There are multiple Large Language Model (LLM) file formats. The three most commo
 
 ### Overview
 
-GGUF/GGML model files are quantized, which means they are compressed to a smaller size than the original model. There is a trade-off between quantization and quality of output. It is similar to image resolution, where there’s a point you start noticing pixelation. The exact trade-off is heavily studied and debated, but until you know more, **assume that you should stick with models of type Q4_K_M.**
+GGUF/GGML model files are quantized, which means they are compressed to a smaller size than the original model. This allows them to run on lower-end hardware, such as consumer devices. Of course, there is a trade-off between quantization level and output quality. You can compare it to image compression, where reducing the size eventually results in pixelation.
 
-Another helpful way of visualizing the impact of quantization is to consider how specific a response can be to the question "Tell me about pizza".
+A helpful way of visualizing the impact of quantization is to consider the range of possible responses to the question "Tell me about pizza".
 
 - With Q1 you have two possible outputs: 'It's good', and 'It's bad'.
 - With Q2 you have four possible outputs: 'It's excellent', 'It's good', 'It's okay", and 'It's bad'.
 - With Q3 you have eight possible outputs: 'It's excellent', 'It's very good', 'It's good', 'It's decent', 'It's okay', 'It's kind of bad', 'It's bad', 'It's horrible'. ...And so on with Q4, Q5, Q6, and Q8.
 
-As you reduce the quantization level, the space of possible responses become less and less precise. They may still be generally correct, but they won't be specifically correct. For pizza, we only need one answer: 'It's great', but for a more complex subject, you likely want the model to have more nuance. However, remember that this analogy is an oversimplification, and real-world quantization, especially in neural networks, deals with numerical values that are much more complex.
+For the pizza example, we might only need one answer: 'It's great', but for a more complex input, you will likely want the model to have more nuance (and thus, a different quantization level with more precision). This analogy is an oversimplification, but it's a good way to think about the trade-off between quantization and quality.
 
-For inference (as opposed to training), the drop in quality of the model does not scale linearly with the reduction in bits. For instance, there is very little difference in the quality of response from an 8-bit quantized model versus a full FP16 model, whereas there is a notable difference with a 2-bit. Think of it like going from a 10 mega-pixel image to a 5 mega-pixel image, then down to a 512x512 pixel image. We generally find the ‘sweet spot’ to be models of 4- or 5-bit quantization. This is important because smaller file sizes work faster on less-powerful hardware.
+For inference (text-generation), the drop in quality does not scale linearly with the reduction in bits. There is very little difference in the quality of response from an 8-bit quantized model versus a full FP16 model. However, you will see a notable difference when compared to a 2-bit model.
 
 ### K-Quants
 
-'K-quants' leverage a newer form of quantization. While the exact difference between these and a "regular" quantized model file is complicated, they are generally smaller in size for the same quality of output. That is, GGUF files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users. The Q4 describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
+Faraday supports model files derived using the "K-quants" quantization method. The "Q4" describes the level of quantization, the K denotes that it’s a “k-quant” and the M denotes that it’s a medium size k-quant.
+
+**GGUF files ending in “Q4_K_M” or “Q5_K_M” are currently recommended for most users.**
 
 ![KQuant](/images/model_quants.png)
 

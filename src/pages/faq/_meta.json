@@ -1,7 +1,7 @@
 {
-  "issues": "Common Issues",
-  "gpu-acceleration": "GPU Acceleration",
-  "model-downloads": "Model Downloads",
-  "import-export": "Imports & Exports",
-  "factory-reset": "Factory Reset (Danger)"
+  "issues": "Common issues",
+  "gpu-acceleration": "GPU acceleration",
+  "model-downloads": "Model downloads",
+  "import-export": "Imports & exports",
+  "factory-reset": "Factory reset (Danger)"
 }

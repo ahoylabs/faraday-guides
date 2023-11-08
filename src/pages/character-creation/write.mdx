@@ -1,21 +1,40 @@
-# Writing your character
+# Writing your prompt
 
-Anything typed into the character info will be sent to the model to help define your characters and the context of your chat or role-play. There are multiple methods suggested for writing out your character info and different methods may prove more or less useful depending on what you are trying to accomplish. There isn’t one exact way that is always the best; it can take experimentation to see what gets you what you want.
+Create a new character by navigating to the "Create" page:
 
-As a general rule, you want to keep your characters limited to around 1000 tokens or less. The more tokens your character takes up, the less chat history you will have to work with. As your character approaches 2000 tokens, you will have times where no chat history is seen by the model.
+![Create](/images/create.png)
+
+There are two modes:
+
+- **"Basic Mode"** is the default mode and is the easiest to use. It will automatically format your prompt for you. All you need to provide is a short description of your character's personality.
+- **"Advanced Mode"** gives you fine-grained control over every aspect of how your character behaves. Use this mode if you want to create a more complex character.
+
+## Helpful Tips
+
+Every field within the character creation form will be sent to the model. There is no one-size-fits-all approach to character creation; it can take experimentation to get exactly what you want.
+
+### Length
+
+As a general rule, you want to keep your characters limited to **1000 tokens or less**. The more tokens your character takes up, the less chat history will be kept in context, making your character appear to "forget" previous information. As your character approaches 2000 tokens, there may be situations where no chat history is seen by the model.
 
 ### Logical Connections
 
-Language models do not think, which means they are not great at logic. Higher parameter models get closer at approximating logic through a higher ‘resolution’ inference, but even a giant model like ChatGPT is not great at problem solving or connecting the dots. What this means is that you should be very specific and clear about what you describe in your character. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. Similarly, statements like “Sarah is the friend of John’s daughter”\* can confuse the model, as there is a logical step of understanding that “John has a daughter and that daughter has a friend and that friend is Sarah and John and Sarah have no actual relationship beyond this connection.”
+Language models do not "think." They are not good at logical reasoning. Higher parameter models get closer at approximating logic through higher resolution inference, but even a massive model like ChatGPT is not great at connecting the dots.
 
-Character descriptions should be direct, and you want to make sure it is always clear who you are talking about. The above examples could be rewritten as “Joan is Sarah’s mother and Joan is tall.” And “Sarah is friends with Kim. Kim is John’s daughter. John and Sarah know each other through Kim.”
+You should be very specific and clear about what you describe in your character. A statement like “Joan is Sarah’s mother and she is tall” leaves ambiguity as to who is tall. Similarly, statements like “Sarah is the friend of John’s daughter”\* can confuse the model, as there is a logical step of understanding that “John has a daughter and that daughter has a friend and that friend is Sarah and John and Sarah have no actual relationship beyond this connection.”
+
+Character prompts should be direct, and you want to make sure it is always clear who you are referring to. The above examples could be rewritten as “Joan is Sarah’s mother and Joan is tall.” And “Sarah is friends with Kim. Kim is John’s daughter. John and Sarah know each other through Kim.”
 
 ### Brevity
 
-You want to mediate between providing too little information and providing too much when creating a character. On one hand little details can add a lot of flavor to a character’s persona. On the other hand, too much detail can mislead the model as to what is an important characteristic. A similar thing to watch out for is qualities that may be contradictory, even indirectly. If you say your character is a dancer and then later say they are clumsy, those qualities may confuse the model because dancers are rarely thought of as clumsy. If you truly mean both of these things you may be able to explain it with something like “Sarah is a wonderful dancer, but is clumsy when not on the dance floor.” This should help define how these two qualities can coexist.
+There is a fine line between providing too little information and too much information in your prompt. You want to be as concise as possible while still providing enough detail on key characteristics that make your character unique.
 
-You want to avoid repeating yourself as much as possible and, unless you have a simple character, prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing, making them helpful.
+Here are some tips:
 
-You can also cover multiple qualities with a single keyword. For instance if you refer to a. Character as “she” at any point or give the character a feminine name, you probably don’t have to say she’s female.
+- Watch out for contradictions. If you say your character is a dancer and then later say they are clumsy, those qualities may confuse the model because dancers are rarely thought of as clumsy. If you truly mean both of these things you may be able to explain it more clearly, for example “Sarah is a wonderful dancer, but is clumsy when not on the dance floor.” This should help define how these two qualities can coexist.
+- You want to avoid repeating yourself as much as possible and, unless you have a simple character, prefer lists of qualities over sentences. Lists use fewer tokens to say the same thing.
+- You can often cover multiple qualities with a single keyword. For instance if you refer to a. Character as “she” at any point or give the character a feminine name, you probably don’t have to say explitly that she is female.
 
-### Output Formatting
+## Formatting
+
+## Structure
