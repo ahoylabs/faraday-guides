@@ -12,6 +12,7 @@ const config: DocsThemeConfig = {
       };
     }
   },
+  logoLink: "https://faraday.dev",
   logo: (
     <div>
       <Image src={"/favicon.png"} width={32} height={32} alt={"Logo"} />
