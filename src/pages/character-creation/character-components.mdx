@@ -58,4 +58,4 @@ The model you chat with is a static file that does not change. Instead, what cha
 
 All of the information sent to the model must fit within the model context. Faraday offers three context lengths in the app settings. Most current models have a context of 4096 tokens (a token is approximately three characters of text). The model does not see information outside of this context window, so we need to specify how our information is cutoff to fit. Faraday will always include the instructions, the character info and our response. The rest of our context is filled with chat history (a reason to be concise with character info is to leave more room for chat history.). When this exceeds the context window after you’ve been chatting for a while, the oldest history starts being removed from the information sent to the model. If you find the model forgetting something you talked about an hour ago, this is why.
 
-![Context Diagram](/images/Context_Diagram.png)
+![Context Diagram](/images/context_sent_diagram.png)
