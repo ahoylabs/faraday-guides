@@ -1,6 +1,7 @@
-# Model Parameters
+# Model Settings
+*Also known as sampler parameters*
 
-Large language models output the next token based on the sequence of tokens that came before it. Each generated token is selected from a "pool" of possible tokens, rather than simply selecting the most probable token (this would lead to boring and repetitive outputs).
+Large language models output the next token based on the sequence of tokens that came before it. The model generates the likelihood of each possible token and then samplers are applied to create a "pool" of possible tokens, rather than simply selecting the most probable token (this would lead to boring and repetitive outputs).
 
 The following samplers specify how tokens should be added and selected from the pool. **Adjusting these parameters can drastically change how your model behaves.**
 
@@ -40,7 +41,7 @@ The following samplers specify how tokens should be added and selected from the 
 
 - **Default:** Enabled
 - **Definition:** Mirostat adjusts the Top K dynamically to create a pool of tokens that will lead to a specific level of perplexity, or creativity. Note that Faraday uses Mirostat 2, not Mirostat 1.
-- Explanation: Mirostat replaces the static Top K value with a dynamically adjusted Top K that adjusts the size of the token pool to ensure a desired level of creativity. It works well to make model responses sound natural while maintaining creativity. Note that while you can use repetition penalty with Mirostat enabled, we have found that doing so leads the model to quickly devolve into nonsense.
+- **Explanation:** Mirostat replaces the static Top K value with a dynamically adjusted Top K that adjusts the size of the token pool to ensure a desired level of creativity. It works well to make model responses sound natural while maintaining creativity. Note that while you can use repetition penalty with Mirostat enabled, we have found that doing so leads the model to quickly devolve into nonsense.
 
 ### Mirostat Learning Rate
 
