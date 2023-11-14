@@ -1,0 +1,61 @@
+## Components of a Character
+In Faraday, characters are composed of text split into several fields. Each of these field is explained below.
+
+### Character's Display Name
+
+The name of the character, as seen in the home screen or on the Character Hub. It is helpful to make this somewhat descriptive. It will not show up within the chat and is only used by the interface. Note that once you upload a character to the Character Hub, this name cannot be changed.
+
+### Character's Real Name
+
+This is the name for the character that will be used within the chat. Messages sent by the AI will be prefixed with "*#character:*", where character is the name you have chosen. When developing your character, Faraday allows you to use the generic term **{character}** in your descriptions that the softward will replace with the selected character name. This allows you to change the name at any time without having to rewrite the description. This is especially helpful for characters that will be posted to the Character Hub.
+
+### User Name
+
+This is the name that the user will use for themselves. This field remains editable for characters posted to the Character Hub so that users can personalize characters for themselves. Similar to the character name, Faraday has a generic term, **{user}** that should be used throughout the character description so that Faraday can switch this name out with whatever a user selects as their name.
+
+### Model Instructions
+
+Most models are trained to accept instructions that influence how they will respond. In Faraday, instructions are found in the character settings, under *advanced*. The default instructions used in Faraday have proven to work very well, but changing them may help tailor the output to what you want. Unfortunately, the size of models most users can run will not always perfectly follow these instructions, so you may have to play with wording to get what you want.
+
+Keep in mind when developing instructions that the models do not play a character; they are *text completion models* completing a chat, roleplay, or narrative between multiple characters, and Faraday stops generation when we want to input text as the character 'user'. This means that instructions should describe the overall format of the interaction, ideally as if describing a completed product (eg. "*a text transcript of a chat*" rather than "*You are a talking bee*".).
+
+![Character Creator Model Instructions](/images/creator_instructions.png)
+
+### Character Persona
+
+This field is where you want to describe the character (or characters) you are developing. Because the model doesn't specifically think it's playing one role in this chat, you will want to be clear that you are talking about the specific character while developing this description. There are several formats for how to clearly define your character in the tips section, but know that the models are pretty good at understanding your description as long as it's clearly about the character and doesn't contradict itself.
+
+### Your Persona
+
+The AI character will behave more realistically if they know something about you, the user. Include appearance, history with the character, and anything else you want here. Note that the character will know anything you type here, so if you don't think that the character should know your love of fish ladders going into the chat, don't add that detail here. When characters are uploaded to the Character Hub, this field remains user editable, so try to avoid storing important information in this field for characters that will be uploaded.
+
+### Scenario
+
+This is where you tell the AI what you and the character are doing together, or what the situation is. You don't *have* to include any information here, but it can definitely help to give the AI a direction. You may find characters in the Character Hub that have more information here than in the character persona section; some character cards are more of a scenario than specific character.
+
+![Character Creator Personas and Scenario](/images/creator_persona.png)
+
+### Example Dialogue
+
+Example dialogue is a way to influence how the AI will respond: long, short, rude, affectionate, roleplay with actions between asterisks, prose with speech in quotes. Typically, 1 - 3 examples are helpful. Note that you do not want to include important plot items here, as they *can* blead into the chat, so try to keep these somewhat generic in terms of what's happening. Also note that **you do not have to include user responses**. They are helpful if you want the AI to respond to specific user input, but for most cases it's not necessary and can save tokens to leave out.
+
+### First Message
+
+This is the first response **from the AI character**. Similarly to example dialogue, this is an important tool to influence how the AI character will respond. The models we use are text *completion* models, and when you prime the character with a first message, it will be better able to complete the text in a similar style and voice. A common issue that many creators run into is that they try to set the scene using the first message, forgetting that this message is *from the character*. If you don't want your character to give out-of-character descriptions of the scene, don't include that in your first message. Instead, get creative in how the character can set the scene in their voice.
+
+![Character Creator Example Dialogue and First Message](/images/creator_example_dialogue.png)
+
+### World Info (Lorebooks)
+
+In this section of the character settings, you can input a keyword (or keywords), along with an associated entry. During chat, none of this section is seen by the AI until the character or user use one of the keywords, at which time the entry will be added to context for a limited duration. Use this section to add information that you don't necessarily want to use up tokens all the time, but is good for the character to know. It can also be used as a way to trigger events. See the more detailed section on Lorebooks for additional information.
+
+![Character Creator World Info](/images/creator_lore.png)
+
+## Prompt Components
+The model you chat with is a static file that does not change. Instead, what changes is what we send to it with each of our responses. This information is composed of four general components: the character information defined above, then chat history, and then your current response. The information is sent to the model in this order with your response being the last thing it sees.
+
+## Rolling Context Window
+
+All of the information sent to the model must fit within the model context. Faraday offers three context lengths in the app settings. Most current models have a context of 4096 tokens (a token is approximately three characters of text). The model does not see information outside of this context window, so we need to specify how our information is cutoff to fit. Faraday will always include the instructions, the character info and our response. The rest of our context is filled with chat history (a reason to be concise with character info is to leave more room for chat history.). When this exceeds the context window after you’ve been chatting for a while, the oldest history starts being removed from the information sent to the model. If you find the model forgetting something you talked about an hour ago, this is why.
+
+![Context Diagram](/images/Context_Diagram.png)
