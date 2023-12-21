@@ -4,19 +4,28 @@
 
 These models have been trained to continue a back-and-forth dialogue between two or more parties. The model generates text until it is about to start the user’s response, at which point it stops and allows you to add the user’s side of the chat.
 
-## LLaMa
+## Base Models
 
-### What is LLaMa?
+### LLaMa
 
-**LLaMa is a large language model (LLM) developed by Meta.**
+**LLaMa** is a large language model (LLM) developed by Meta. Recently, Meta released **LLaMa2**, a new and improved base model that is supported on Faraday.
 
 The base model comes in several sizes, each one with a different number of parameters: 7B, 13B, 33B and 65B. A higher parameter count means more nuanced and accurate responses, while also requiring significantly more processing power.
 
+### Other Base Models
+
+Other base models have been released that use the same architecture as LLaMa.
+
+- _Mistral_ is a 7B base model that has largely replaced LLama 2 7B.
+- _Yi_ is another powerful base model that comes in multiple parameter sizes.
+
+These base models are supported on Faraday.
+
 ### What is fine-tuning?
 
-The LLaMa base models can be fine-tuned to generate text in a specific style, such as instruction-following, programming assistance, or roleplay. Fine-tuning involves tweaking the parameters of the base model by training on a customized dataset.
+Fine-tuned models extend the capabilities of their base model. They are trained (via curated datasets) to generate text in a specific style, such as instruction-following, programming assistance, or roleplay.
 
-The fine-tuned models available on Faraday have been trained on conversational datasets by various third parties.
+Each model in the Faraday marketplace is a fine-tuned model (the base model is never run directly). Each one has been trained on conversational datasets by various third parties.
 
 ## Tokens
 
