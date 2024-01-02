@@ -1,0 +1,73 @@
+# Writing your Character Prompt
+
+## Character Creator Page
+
+In Faraday, Characters are composed of text split into several fields. These fields define your Character's personality (how they respond to you, what they know about you) as well as the progression of your chat (circumstances surrounding the conversation, first message, etc.).
+
+![Character Creator](/images/char_creator.png)
+
+### Model Instructions
+
+The text-completion models used on Faraday are trained to accept instructions that specify how they should respond. Instructions should describe the _overall format_ of the interaction as if describing a completed product (eg. "_text transcript of a chat_" rather than "_you are a talking bee_").
+
+These instructions can be found in the Character's settings, under the _advanced_ tab. The default instructions used in Faraday work well most of the time, but modifying them may help you achieve more personalized results.
+
+### Display Name
+
+The name shown on your Character's preview card, which appears on the homescreen and in the Hub. This name can be purely descriptive (e.g. 'A helpful AI Assistant'), as it is only used in the interface and never sent to the model. Note that once you upload your Character to the Character Hub, this name cannot be changed.
+
+### Real Name
+
+The actual name of your Character. Use this name to reference your Character during chat conversations.
+
+### User Name
+
+The name that you, the user, are referenced by in the chat. This field remains editable for Characters posted to the Character Hub so that each chat can be personalized.
+
+### Character Persona
+
+A detailed description of the Character's personality. The models are good at understanding descriptions, as long as they clearly refer to a specific Character and don't include contradictions.
+
+### Your Persona
+
+The Character will behave more realistically if they know something about you, the User. Include details about your appearance, history with the Character, and anything else you want here. Note that the Character will "know" anything you type here, so don't add detail that isn't shared knowledge. When your Character is uploaded to the Character Hub, this field remains user-editable, so avoid storing important information in this field.
+
+### Scenario
+
+Tell the AI model what circumstances surround the conversation. For example, this could be an activity that User and Character are currently engaged in. You do not have to include any information here, but it can help provide direction to your chats. The same rule applies here as in the Character Persona: be clear about who you are referring to.
+
+### Example Dialogue
+
+Example dialogue is a way to influence how the Character will respond. This can make your Character use a certain style of speech (long, short, rude, affectionate) and/or inform the roleplay formatting (actions between asterisks, prose with speech in quotes, etc.).
+
+Typically, 1 - 3 examples are helpful. You do not want to include major plot items here, as they can bleed into the chat. Also, note that **you do not have to include user responses**. They are helpful if you want the Character to respond to specific user input but for most cases, it is not necessary and can save tokens to leave out. A common method of developing dialogue examples is to start chatting with your character, edit incoming responses as necessary, and place the best pieces of dialogue here. This will help ensure new chats align more closely to the best responses.
+
+### First Message
+
+This is the first response _from the Character_ that kicks off the conversation. It is an important tool for influencing future responses, as well as introducing the Character and scenario. When you prime the Character with a great first message, they will be better at adhering to a similar style and voice.
+
+A common issue many run into is that they try to set the scene using the first message, forgetting that this text is _from the Character_. If you do not want your Character to give out-of-character descriptions of the scene, do not include them in your first message. Instead, get creative in how the Character can set the scene in their unique voice.
+
+### World Info (a.k.a. Lorebook)
+
+Here you can input various keywords that each have a corresponding value. During the chat, if a keyword is present in the most recent four messages, the value will also be sent to the model.
+
+World Info is a helpful tool to add information that does not belong permanently in context, but is still important for the Character to know at certain points.
+
+## Other Helpful Tips
+
+### Variables
+
+If the word 'character' is placed between brackets, it will be replaced with the Character's real name whenever it is found within any field. The same applies to the word 'user', which will be replaced with the User's name.
+
+![Real Name](/images/real_name.png)
+
+### Understanding model context
+
+The model only processes information within its context window, which includes instructions, character details, chat history, and your most recent response. Excess history is removed incrementally, oldest first. Memory lapses in the model about past conversations occur due to this limited window. Brevity in character details helps retain more chat history.
+
+Models typically handle 4096 tokens (roughly three characters each). Faraday provides context length options from 2048 to 8192 tokens, with a default of 2048 to ensure broad hardware compatibility. It's suggested to try a 4096 token limit, but higher settings might cause instability on less capable systems. Character prompts are capped at half your chosen context limit to balance with chat history and ongoing text.
+
+Here is a rough diagram that shows what is sent to the model on each message that you send:
+
+![Context Diagram](/images/context_sent_diagram.png)
