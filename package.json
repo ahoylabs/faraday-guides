@@ -9,18 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.5.5",
-    "nextra": "^2.13.2",
-    "nextra-theme-docs": "^2.13.2",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "14.1.0",
+    "nextra": "2.13.2",
+    "nextra-theme-docs": "2.13.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.5",
-    "typescript": "^5"
+    "@types/node": "20.11.6",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "6.19.1",
+    "@typescript-eslint/parser": "6.19.1",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
+    "typescript": "5.3.3"
   }
 }
