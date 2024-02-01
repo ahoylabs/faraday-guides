@@ -2,6 +2,7 @@
   "name": "faraday-guides",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@3.6.1",
   "scripts": {
     "build": "next build",
     "serve": "next start",
