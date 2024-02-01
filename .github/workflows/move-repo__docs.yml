@@ -22,7 +22,6 @@ jobs:
           access_token: ${{ secrets.GH_TOKEN }}
           sot_repo: ahoylabs/faraday
           destination_repo: ahoylabs/faraday-guides
-          copybara_options: "--init-history"
           push_include: "apps/docs/** .github/workflows/move-repo__docs.yml"
           push_move: "apps/docs||"
           pr_move: |
