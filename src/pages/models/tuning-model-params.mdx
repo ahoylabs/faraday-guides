@@ -10,7 +10,7 @@ The following samplers specify how tokens should be added and selected from the 
 
 - **Default:** 0.8
 - **Definition:** Controls the "creativity" of the model by setting how likely the model is to choose a less probable token.
-- **Explanation:** A very low temperature setting (0 - 0.2) can lead to repetition, as the model will lean towards repeating the previous sequence (_"cat cat cat cat"_). A very high temperature (2.0 or higher) can lead to nonsensical outputs as the next token will be unrelated to the previous sequence (_"cat tree stew"_). Typical values are between 0.5 (_"cat climbed a tree"_) and 1.2 (_"cat spoke eloquently"_).
+- **Explanation:** A very low temperature setting (0 - 0.2) can lead to repetition, as the model will lean towards repeating the previous sequence (_"cat cat cat cat"_). A very high temperature (2.0 or higher) can lead to nonsensical outputs as the next token will be unrelated to the previous sequence (_"cat tree stew"_). Typical values are between 0.5 (_"cat climbed a tree"_) and 1.2 (_"cat spoke eloquently"_). When using Min-P temperature can be set much higher without causing incoherent output.
 
 ### Top P
 
@@ -26,9 +26,9 @@ The following samplers specify how tokens should be added and selected from the 
 
 ### Repeat Penalty
 
-- **Default:** 1.0\*
+- **Default:** 1.0*
 - **Definition:** How heavily a repeated token is penalized.
-- **Explanation:** To avoid unnecessary repetition, repeat penalty looks at past tokens to reduce the probability of selecting a token that has already occured. A value of 1.0 is inactive. Typical values range between 1.0 - 1.2. Faraday defaults repeat penalty to be inactive as it behaves poorly when mirostat is turned on.
+- **Explanation:** To avoid unnecessary repetition, repeat penalty looks at past tokens to reduce the probability of selecting a token that has already occured. A value of 1.0 is inactive. Typical values range between 1.0 - 1.2. Faraday defaults repeat penalty to be inactive as it is not typically required when using Min-P.
 
 ### Repeat Penalty Tokens
 
@@ -36,20 +36,8 @@ The following samplers specify how tokens should be added and selected from the 
 - **Definition:** The number of trailing tokens in the context to consider when applying the repeat penalty.
 - **Explanation:** Adjust this to determine how far back repetition penalty looks in the context. Increasing this will make outputs more conservative.
 
-### Mirostat
+### Min-P
 
-- **Default:** Enabled
-- **Definition:** Mirostat adjusts the Top K dynamically to create a pool of tokens that will lead to a specific level of perplexity, or creativity. Note that Faraday uses Mirostat 2, not Mirostat 1.
-- Explanation: Mirostat replaces the static Top K value with a dynamically adjusted Top K that adjusts the size of the token pool to ensure a desired level of creativity. It works well to make model responses sound natural while maintaining creativity. Note that while you can use repetition penalty with Mirostat enabled, we have found that doing so leads the model to quickly devolve into nonsense.
-
-### Mirostat Learning Rate
-
-- **Default:** 0.1
-- **Definition:** Learning rate determines how quickly the entropy (amount of creativity) is adjusted.
-- **Explanation:** A higher learning rate will more quickly correct the entropy of the next token. The authors of the Mirostat paper recommend 0.1, but a value between 0.05 - 0.2 can be used.
-
-### Mirostat Entropy
-
-- **Default:** 5.0
-- **Definition:** The desired tau, or perplexity value that mirostat will aim to achieve.
-- **Explanation:** Increasing Mirostat Entropy will increase the perplexity target, leading to less coherent, but more creative output. Lowering the value will be more coherent, but can cause repetition and "boredom". Some sources recommend that you set the entropy based on the size of the model: 5.0 for a 13B model, 6.0 for a 7B model and 4.0 for a 70B model.
+- **Default:** Enabled; 0.1
+- **Definition:** The parameter multiplied by the top token probability becomes the cutoff for token probabilities in the selection pool. 
+- **Explanation:** Min-P dynamically adjuss the pool of tokens based on how likely the top token is. When the top token is very likely, the cutoff is high, and when it is less likely, lower pribability tokens are let into the pool. The parameter is a proportion (between 0 and 1) of the top token probability. Increasing Min-P constricts the pool to more likely tokens and reducing it widens the pool. A Min-P of 1 would only include the top token while a Min-P of 0 would include all tokens. Min-P is better than alternatives at giving a *consistent* level of variety between generation steps.
