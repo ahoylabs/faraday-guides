@@ -22,7 +22,7 @@ jobs:
           access_token: ${{ secrets.GH_TOKEN }}
           sot_repo: ahoylabs/faraday
           destination_repo: ahoylabs/faraday-guides
-          push_include: "apps/docs/** .github/workflows/move-repo__docs.yml .yarn/plugins/** .yarn/releases/**"
+          push_include: "apps/docs/** .github/workflows/move-repo__docs.yml"
           pr_move: |
             ||apps/docs
             apps/docs/.github||.github
