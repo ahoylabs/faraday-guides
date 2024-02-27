@@ -4,5 +4,7 @@
   "models": "Models",
   "character-creation": "Characters",
   "hub": "Character Hub",
+  "tethering": "Mobile Tethering",
+  "text-to-speech": "Text to Speech",
   "issues": "Common issues"
 }
