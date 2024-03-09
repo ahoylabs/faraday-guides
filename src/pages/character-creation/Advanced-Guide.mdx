@@ -31,13 +31,13 @@ In this format, we remove as many words and characters as possible. Bracketing h
 
 # The Framework
 The LLM only sees text; it isn't processing the information we send as code or expecting any specific format. The rules and guides herein are merely things that have proven to work well. The first thing you'll notice is the text fields Faraday provides:
--Instructions
--Character persona
--User persona
--Scenario
--Example Dialogue
--First Message
--Lorebook
+- Instructions
+- Character persona
+- User persona
+- Scenario
+- Example Dialogue
+- First Message
+- Lorebook
 
 Remember as you read this and work that these divisions are a construct to help us keep track of details; the information from each field is merged and sent to the model as one prompt; it doesn't see the division.
 
@@ -69,35 +69,35 @@ There are several elements that creators will want to guide through the use of i
 **Beg and Bribe:** A legitimate research paper found that LLMs respond positively to kindness, bribery, and calls to emotion. So, say thank you, tell it that long responses are worth 100pts, or emphasize that output quality is essential to keeping your job. It actually works.
 
 Below are some common instructions creators have used with success. As with all things LLM-related, experimentation is a crucial component that is encouraged.
--`Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).`
--`Long-format roleplay where participants play the characters {character} and {user}.`
--`Fantasy novel by JRR Tolkien.`
--`In the transcript, the dialogue is written in quotation marks.`
--`All of {user}'s speech and actions will be preceded by '{user}:'`
--`Transcript includes verbose, vivid descriptions of what sensations participants experience, including details on the sight, sound, feel, and taste.`
--`Participants are expected to contribute to the ongoing narrative, pushing the roleplay forward in creative and unexpected ways.`
--`{character} will end each response with a question.`
--`The roleplay is written in the past tense third-person omniscient point of view.`
--`out-of-context commentary explaining the direction of the story will be written in the transcript in the following format: (OOC: commentary.)`
+- `Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).`
+- `Long-format roleplay where participants play the characters {character} and {user}.`
+- `Fantasy novel by JRR Tolkien.`
+- `In the transcript, the dialogue is written in quotation marks.`
+- `All of {user}'s speech and actions will be preceded by '{user}:'`
+- `Transcript includes verbose, vivid descriptions of what sensations participants experience, including details on the sight, sound, feel, and taste.`
+- `Participants are expected to contribute to the ongoing narrative, pushing the roleplay forward in creative and unexpected ways.`
+- `{character} will end each response with a question.`
+- `The roleplay is written in the past tense third-person omniscient point of view.`
+- `out-of-context commentary explaining the direction of the story will be written in the transcript in the following format: (OOC: commentary.)`
 
 Note that one thing that the models are terrible at is negative instructions. If you tell the model `Don’t think about an elephant` it usually has the same impact it has on humans: it’s going to think about elephants. Do your best to avoid any instruction or character description that is phrased as a negative. Instead of the phrase `Tom isn’t very talkative` use `Tom is quiet`.
 
 
 ## Character Persona
 character persona is typically the meat of the prompt. We want to define the character that we'll be interacting with. If you are using AI to assist with expertise on a topic, make the character persona someone who reasonably has experience on that topic, ideally teaching that topic. Most characters used in Faraday are for fictional chat or roleplay, however. For that use, it is best to provide enough detail that the character is well-rounded without flooding the prompt with information that could confuse the model. Your description of the character should include anything you believe makes up who that character is, including macroscopic and microscopic details. A typical persona may consist of some level of detail on the following elements:
--Age
--Gender
--appearance
--clothes
--priorities
--hobbies
--profession
--goals
--relationships/family
--personality
--dislikes
--sexuality
--background
+- Age
+- Gender
+- appearance
+- clothes
+- priorities
+- hobbies
+- profession
+- goals
+- relationships/family
+- personality
+- dislikes
+- sexuality
+- background
 
 You may be planning on making a simple chat partner. However, I still recommend including much of the above information. Character personas can be pretty one-dimensional when they are limited to the details that pertain to the scenario you imagine. When you start adding a lot of detail that feels unrelated to the chat you have in mind, the AI is excellent at picking up on that detail and bringing those components into the chat. The AI may not bring up family if you don't tell it that the character has a younger brother, it may give your character a terrible job if you don't list their profession, and it may appear like a caricature if you don't list their hobbies. On the one hand, providing detail gives you, the creator, more control over who this character is, and on the other hand, it helps trigger the AI with things for the conversations to include.
 
@@ -168,11 +168,11 @@ As noted above, the first message has several goals, and addressing each can be 
 #{character}: *{character} looked out over the flowers, grass, and trees of the city park, enjoying the sun.* It's a beautiful spring day, don't you think? I love coming here when I'm not too busy with work. It's been far too long since you and I got together like this. *He smiled at {user}, then picked up a cookie from the picnic basket.* So, what should we do today, {user}?
 ```
 In this example, we've done a lot in a very natural way.
--We've set the location, both the place and the happy feel of the place.
--Set up that the user and character are meeting after some time.
--Set up that they are having a picnic.
--Implied that Character works a lot.
--It ends with a question for the user, giving them an easy way to start interacting with the character.
+- We've set the location, both the place and the happy feel of the place.
+- Set up that the user and character are meeting after some time.
+- Set up that they are having a picnic.
+- Implied that Character works a lot.
+- It ends with a question for the user, giving them an easy way to start interacting with the character.
 
 
 ## Lorebook
