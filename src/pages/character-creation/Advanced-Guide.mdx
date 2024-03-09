@@ -1,0 +1,232 @@
+# Basics
+We interact with the language models in Faraday by creating characters that frame how the AI responds to us. Whether you are asking AI technical questions, chatting with a new friend, or roleplaying Die Hard with Smurfs, the character details give the AI the framework it needs to generate its side of the interaction. I will use 'character details' and 'prompt' interchangeably in this document. 'Prompt' is a term for the information sent to the LLM each time we ask it to respond.
+
+Setting up a character isn't rocket science, and there isn't one right way to do things. You want to start by writing down your character's persona: who they are, what they look like, how they behave, etc. That is the basis of character design. You could write something like the below into the character persona and get started.
+
+`Jenny is a woman in her 30s who is an expert accountant and teaches accounting classes as a professor. Her demeanor is professional, kind, and informative. Jenny is always willing to answer accounting questions and will do her best to give detailed, helpful answers.`
+
+That alone would work. It conveys who the AI will act as, their background, and how they respond. Everything we discuss in this guide will be how to build on a basic description to create more immersive, lifelike, and complex characters to interact with.
+
+Over time, a basic framework has developed for how character details are divided, as well as several concepts for how to write the character details. In this tutorial, we'll talk about the framework, how each component generally works, what formatting I recommend, some tips and tricks, and how to use lore to expand your character. Ultimately, you will have a decent idea of how to craft a character or roleplay scenario.
+
+## Text Formatting
+Before we jump into more detail, let's talk about how to write a character's details. There is no 'perfect' way to write out the character details, but there are formats that have been used and seem to work well. The reality is that LLMs are great at interpreting what we write, so you have options and can experiment; it's an art, not a science. The two main ways that creators write character information are in natural language form and list form.
+
+## Natural Language
+Natural language form is what we've all been taught to write since childhood. You write out the details like you were writing a brief biography. There are several things to watch out for when writing a character in this form. First, the model is sensitive to grammatical mistakes. If you write a poorly written description, the model will pick up on that and try to replicate it. Second, be clear about who you are talking about in the descriptions. LLMs are not great at understanding who pronouns refer to when they aren't right next to the associated name. For instance: `Kyle is smart. He is an expert in his field.` is probably okay; it's pretty clear who "he" refers to. `Kyle is smart. His friend thinks he is a genius. He is an expert in his field.` In this example, we've added another person. Now, it's not necessarily clear who "he" refers to in the last sentence, which can give that statement less weight. As you write your character description, make sure it's clear who you refer to and use names more than you would typically.
+
+## Variables
+One more thing to know regarding formatting: Faraday uses two variables in the character information: {character} and {user}. These will be replaced with the user name and character name. This makes it easier to change the names later on. That is especially important for the user if you intend to upload the character to the Character Hub.
+
+## Formatted Lists
+List format is where you make lists of characteristics. This format has the positive side of being very clear about who you are talking about and being easy to read. It can also very efficiently convey diverse information about the character quickly. Below is an example of this format.
+```Leonardo[
+persona(a teenage mutant ninja turtle fighting the Foot with the other ninja turtles.)
+personality(fun-loving, kind, strong, perseverance.)
+appearance(tall, green, human-sized turtle, blue mask, two katanas.)
+hobbies(eating pizza, fighting criminals, karate training with Splinter, chatting with April O'Neil)
+priorities(having fun, fighting crime, helping brothers.)
+]```
+In this format, we remove as many words and characters as possible. Bracketing has proven to be a successful tool for helping the models understand what qualities belong to which characters, so we can name the character once at the beginning and avoid it in the rest of the description. We also avoid capitalizing words unless necessary. Due to how tokenization works, most capitalization adds unnecessary tokens, so try to avoid it when possible.
+
+# The Framework
+The LLM only sees text; it isn't processing the information we send as code or expecting any specific format. The rules and guides herein are merely things that have proven to work well. The first thing you'll notice is the text fields Faraday provides:
+-Instructions
+-Character persona
+-User persona
+-Scenario
+-Example Dialogue
+-First Message
+-Lorebook
+
+Remember as you read this and work that these divisions are a construct to help us keep track of details; the information from each field is merged and sent to the model as one prompt; it doesn't see the division.
+
+We'll walk through each section and discuss how to use each well.
+
+## Instructions
+The models we use have been trained to follow instructions and generate a response. As such, the way to start a prompt is by telling the AI what we expect to see. Here, we set the style and format for the interaction.
+
+Note that we are prompting the AI, not a character, throughout this. Our prompt defines the character and how they'll respond. What the AI is trying to do is complete text that will end up being the character details and a multi-person chat that is the chat history. It doesn't know that we're writing part and it's writing part; it has no concept of us as a user versus it as a character.
+
+Considering the above, we want to tell the AI what it is writing. For instance, the default instruction in Faraday is:
+```Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).```
+
+This instruction tells the AI that the following document it is writing is a chat transcript involving two parties. It then defines how that document is formatted, with an example. You've now primed the AI to write a chat transcript, something it's seen millions of times in its training data. We could revise this, and many creators do. We could tell the AI this is a roleplay transcript, a movie script, or a novel. The important thing is that we are trying to reference a type of document the model has seen before so it knows what it is completing. Then, as it generates that complete document, Faraday interrupts it so the user can write 'their' part.
+
+After we set the basic format of the document, we can add additional requirements. The more our instructions appear like something you see at the beginning of a document, the better the LLM will be to follow them. For instance, many movie scripts likely contain a summary of the style and atmosphere of the film. The instruction tuning of the model will help it follow these instructions beyond what is typically seen in the training data. However, the ability to comprehend specific instructions is somewhat limited, especially with smaller models.
+
+There are several elements that creators will want to guide through the use of instructions:
+
+**Style:** The style in which we expect the AI to write the interaction: comedic, scary, emotional, supportive, etc. Just as a movie script may contain a line saying, "a coming of age comedy," we can instruct the AI toward what genre or feel we want our interaction to take: `a funny conversation,` `a long format suspense novel in the style of Dr. Suess,` `a realistic fantasy roleplay.`
+
+**Format:** Much like the default gestures and actions written between asterisks, we can instruct the AI that the text should follow other formatting conventions. Almost any format you want the model to follow will need to be reinforced through example dialogue later, as the models have a lot of training on fairly basic formats, so alternating from that takes effort to encourage. Examples of formatting you may want to ask for include:
+-Actions and speech by each character will only occur during that character's turn.
+-Responses will begin with a narrative description followed by the character's actions and speech.
+-Responses will be concise and specific.
+
+**Language:**  Language is similar to style but includes what kind of language the model should use. Should descriptions be colorful and flowery? Should characters swear profusely? Should non-verbal sounds be written out (like 'creek,' or 'aaah! Ugh!")? Again, these are elements that you will ideally reinforce through example dialogue later. Still, it can be helpful to instruct the model for these.
+
+**Beg and Bribe:** A legitimate research paper found that LLMs respond positively to kindness, bribery, and calls to emotion. So, say thank you, tell it that long responses are worth 100pts, or emphasize that output quality is essential to keeping your job. It actually works.
+
+Below are some common instructions creators have used with success. As with all things LLM-related, experimentation is a crucial component that is encouraged.
+-`Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).`
+-`Long-format roleplay where participants play the characters {character} and {user}.`
+-`Fantasy novel by JRR Tolkien.`
+-`In the transcript, the dialogue is written in quotation marks.`
+-`All of {user}'s speech and actions will be preceded by '{user}:'`
+-`Transcript includes verbose, vivid descriptions of what sensations participants experience, including details on the sight, sound, feel, and taste.`
+-`Participants are expected to contribute to the ongoing narrative, pushing the roleplay forward in creative and unexpected ways.`
+-`{character} will end each response with a question.`
+-`The roleplay is written in the past tense third-person omniscient point of view.`
+-`out-of-context commentary explaining the direction of the story will be written in the transcript in the following format: (OOC: commentary.)`
+
+Note that one thing that the models are terrible at is negative instructions. If you tell the model `Don’t think about an elephant` it usually has the same impact it has on humans: it’s going to think about elephants. Do your best to avoid any instruction or character description that is phrased as a negative. Instead of the phrase `Tom isn’t very talkative` use `Tom is quiet`.
+
+
+## Character Persona
+character persona is typically the meat of the prompt. We want to define the character that we'll be interacting with. If you are using AI to assist with expertise on a topic, make the character persona someone who reasonably has experience on that topic, ideally teaching that topic. Most characters used in Faraday are for fictional chat or roleplay, however. For that use, it is best to provide enough detail that the character is well-rounded without flooding the prompt with information that could confuse the model. Your description of the character should include anything you believe makes up who that character is, including macroscopic and microscopic details. A typical persona may consist of some level of detail on the following elements:
+-Age
+-Gender
+-appearance
+-clothes
+-priorities
+-hobbies
+-profession
+-goals
+-relationships/family
+-personality
+-dislikes
+-sexuality
+-background
+
+You may be planning on making a simple chat partner. However, I still recommend including much of the above information. Character personas can be pretty one-dimensional when they are limited to the details that pertain to the scenario you imagine. When you start adding a lot of detail that feels unrelated to the chat you have in mind, the AI is excellent at picking up on that detail and bringing those components into the chat. The AI may not bring up family if you don't tell it that the character has a younger brother, it may give your character a terrible job if you don't list their profession, and it may appear like a caricature if you don't list their hobbies. On the one hand, providing detail gives you, the creator, more control over who this character is, and on the other hand, it helps trigger the AI with things for the conversations to include.
+
+
+### Unintended intimacy
+Humanity has been writing romance since the story was invented. Few novels or movies don't include a romance component in some way, and humans spend a tremendous amount of time talking about romance. The models include a ton of training that includes romance, and the finetunes we use include even more. Assuming you don't want your chat to jump head-first into intimacy, you will want to avoid including descriptions of sexuality in your persona, and you will need to be careful about the language you use when describing both personality and appearance. For instance, the adjective 'flirty' is a trigger for the AI, as is pretty much any detailed description of the female physique. Many creators may want their characters to be able to be intimate at some point, so we'll talk about how to deal with that in the Lorebook section, where we can use lore to 'trigger' the insertion of the relevant character description.
+
+
+### How to ruin a character
+Two things are almost guaranteed to ruin a character: contradictions and lousy grammar.
+
+Including conflicting details in the persona will pull the AI in two directions and cause it to fail to follow either detail. For instance, if you call your character confident and later say they are shy, those are generally conflicting qualities. The AI will shrug its shoulders and ignore both. Be careful, as this conflict can arise out of seemingly independent attributes. For instance, if you describe your character as having a pleasant smile and then later describe them as being manipulative, the AI may consider those to contradict each other and may not respond to either well.
+
+The LLMs are text-completion models at their core and want to complete a given text. If you provide a prompt full of grammatical mistakes and typos, you will get grammatical errors and typos in your responses. Read through your text carefully to ensure that grammar makes sense, tenses match, names are spelled correctly, etc. Note that you can still write your description in a very dense, non-prose format, but you must ensure there's no way of mistaking your format for bad writing. If English isn't your strong suit, there are online systems that will help improve your writing, and you can even work with an LLM to help you.
+
+
+## User Persona
+The explanation for character description applies here for the most part. The one big exception is that a user will be playing this character, so you don't want to write out details about the user without telling the user about them, and you don't want to include information that the AI character shouldn't know about. If it's in the prompt, there's a good chance that the character will reference the detail, even if they shouldn't be aware of it.
+
+Note that the user's default persona will overwrite this if you upload your character to the hub. If your character requires the user to be a specific character, shift that description into the character persona field. As I said earlier, the AI doesn't care which field it's in for the most part.
+
+
+## Scenario
+You typically want your user and character to have something to do together, even if you just want to chat. Giving a scenario of some kind is vital for the AI to carry on a good conversation. Some prompts may end up being more scenarios than characters (several characters in the Character Hub have no set character even).
+
+The scenario should be a bit of background along with the initial starting point of the interaction. It is part of the permanent context, so avoid including time-sensitive details or specifying the location unless you only intend one location. I will often set the scenario to the character's overall goal with the user; for instance, `{character} needs to hack a voice-activated safe and is going to trick {user} into saying the password: platypus.` that sentence tells the AI what the character is trying to accomplish and why and would be enough to get the interaction started. If you've ever watched an improv show, think of the scenario as the prompt for an improv scene.
+
+
+## Example Dialogue
+You can give the AI an example of the style and format of responses by giving it an example of dialogue. Like any other field, this is not required, but it dramatically impacts the form and style of responses. Suppose you are having trouble with your character giving short responses or using asterisks instead of quotes. In that case, this is where you fix that. As LLMs are text completion, you are directly providing the model with the text for it to complete when you add example dialogue to your prompt.
+
+Technically, example dialogue is the last element in permanent context and is only separated from the chat history by one user response that says `*#{user}: waits a while*`. That means it can influence the chat, acting less as an example and more like a prologue. I recommend using this to your advantage and remembering that fact as you develop it. For instance, remember that events here may be assumed to have already happened.
+
+There is no 'correct' way to write example dialogue. If you include it, I recommend providing at least three examples of the character's responses, over-emphasizing the qualities you want the model to replicate. Ideally, you want to include a back-and-forth dialogue between the user and the character, as that is the pattern we want the model to follow during our chat. Still, sometimes, creators skip the user side to save tokens or to avoid the concept that the user and character have met before the conversation starts. You could also make a character that is only composed of example dialogue, using it to start the story and provide any relevant details on the character and scenario. Again, there is no correct way to use example dialogue, only the way that works for your character.
+
+There are three main ways creators use example dialogue in character creation. The first method is to make the dialogue very generic so that it only conveys the tone and format of the response. An example might be:
+```#{character}: "I, like, can't believe he totally did that!" she said, her expression animated as she gossiped happily. "Like, for real! Who even does that?!"```
+This example only gives the character's voice, shows that we're using quotation format, and conveys a specific style of speech, all without really saying anything.
+
+A second method is to use example dialogue to convey information about the character. This method can replace parts of the character persona, cutting down on tokens. An example would be something like:
+```#{user}: what is your favorite book?
+#{character}: oh, heavens, my favorite book? Hmm, let me think. *He taps his bearded chin, his wrinkled brow furrowed in thought. Suddenly, his blue eyes light up.* You know I like sci-fi, right? Well, my favorite book is I, Robot. *He smirks knowingly.*```
+In this example, we are learning a lot about the character while also giving a solid example of a response with decent dialogue and descriptive text in asterisks.
+
+A third method is to truly use the example dialogue as a prologue. You can write what interaction occurs before the chat begins, even if that interaction doesn't include the user. I have made characters whose example dialogue includes the character talking to someone completely different from the user. The chat eventually leads to the moment the character meets the user, setting up the scenario nicely. An example would be:
+```#Clark: "Did you get the report finished?" Clark said to {character}, his least favorite intern.
+#{character}: {character} looked up from his work with noticeable fear in his green eyes. He tried to put on a brave face but failed miserably. "N-no, sir. Another director put me on a rush project, so I didn't have time." He said weakly, avoiding eye contact. He fiddled with the buttons of his dress shirt.
+#Clark: Clark sighed heavily. He had known {character} would let him down again. If his mom weren't the CEO, he'd have been fired by now. "Go see {user}. They'll help you think of something interesting to say."
+#{character}: "Y-yes, sir." {character} rose quickly and walked across the building to {user} 's corner office. He bumped into Sarah's chair on the way there, causing her to spill her coffee (again). Before knocking at the door, {character} adjusted his tie and smoothed his messy hair. “{user}? Can I come in?"```
+This example sets up the scenario, setting, format, and details on how the character speaks and acts. It also elides perfectly into the hidden user message, first message, and user response. From here, the model knows exactly what's happening and how the character behaves.
+
+One last trick regarding example dialogue is that you can use it to reinforce an out-of-context instruction, such as those given with an author's note. If you give two examples of the character responding, each with a different author's note that it is following, the model will have a better chance of understanding that responses should follow those instructions. For example, you could try:
+```[author's note: {character} is terrified of water.]
+
+#{character}: "Get out of the water!" {character} screamed, waving her hands wildly. "That's... WATER! You'll get... WET!" she said, falling to her knees while holding her face in her hands, unable to look upon the scene unfolding before her.
+
+[author's note: {character} has decided to speak like a pirate.]
+
+#{character}: "ARRR! Shiver me timbers, you landlubber. I'll be having one order of nuggets of chicken." He said, one hand on his hip while the other gestured threateningly at the menu behind the counter. "And a mug o' your finest ale, ya, hear?!" He continued, giving the startled fast-food worker the dirty eye while one eye was closed like an eye patch.```
+The example above clearly shows the character responding in a way that follows two very different author's notes. Each one is over-emphasized to ensure the model gets the hint. Most models have a habit of being less 'in character' than we want them to be, so going overboard in your examples is recommended.
+
+
+## First Message
+The first message is similar to example dialogue. It is a message from the character that starts the interaction. When creating a character for yourself, this may be optional to add. However, suppose you are planning to share your character with others. In that case, you will provide important context for the user here. Also, if you don't include example dialogue, this is your one chance to show the model what a character response should look like.
+
+As noted above, the first message has several goals, and addressing each can be difficult. You want to show the model how the character will respond and provide the needed context for the user. As such, you will want to get creative in showing the scenario through the character's words and actions in a way that matches the response style and format you want the model to continue using. If you give a block of explanatory text in this first message (something many creators have tried to do), then the model will think that's how it should continue to respond. Below is an example of a first message that incorporates the scenario setup more naturally:
+```
+#{character}: *{character} looked out over the flowers, grass, and trees of the city park, enjoying the sun.* It's a beautiful spring day, don't you think? I love coming here when I'm not too busy with work. It's been far too long since you and I got together like this. *He smiled at {user}, then picked up a cookie from the picnic basket.* So, what should we do today, {user}?
+```
+In this example, we've done a lot in a very natural way.
+-We've set the location, both the place and the happy feel of the place.
+-Set up that the user and character are meeting after some time.
+-Set up that they are having a picnic.
+-Implied that Character works a lot.
+-It ends with a question for the user, giving them an easy way to start interacting with the character.
+
+
+## Lorebook
+Lorebooks are an idea developed to allow for more tokens to be used in a character without them being in your permanent context at all times. You can make a character with standard details on them, then expand on that character and the world they inhabit by providing tidbits of more information as lore entries.
+Lore entries are a set of keywords with an associated prompt. When Faraday finds the keywords in the recent chat, it inserts the associated prompt near the end of context. So, for example, you could have a keyword for `home, house` that triggers the insertion of `{character} lives in a bunker, deep under the ground.` Now, suppose you are chatting with the character, and one of you starts talking about home. In that case, Faraday inserts the prompt, and the AI knows that the character has a specific, unique home. You didn't have to include this information in the character persona. This is a small example, but creators can build large, complex worlds and lore using this system without wasting permanent context tokens.
+Another use of the lorebook is to change what's happening in the interaction based on a trigger word. This is a powerful way to make a roleplay far more complex, giving a creator a level of control over how an interaction evolves throughout a chat. For example, consider a roleplay in which you want dinosaurs to attack when the user enters the forest. You could create a lore entry with a keyword of `trees` and a prompt of `A large T-Rex stomps through the forest toward {user} for an impending attack.`
+During the roleplay, the user and character can talk about the forest all they want, but when they get into the forest, someone will likely mention the word 'trees', and at that moment, Faraday will insert the lore prompt into context, and the character will comment on the impending dinosaur attack.
+
+Lastly, you may use Lore entries to give more depth to the character's personality without influencing their base personality. For instance, your character may be kind and compassionate most of the time but still have a terrible temper. If you were to describe that temper in the character's persona, it could influence their typical personality to be more volatile. However, if you create a lorebook entry for `angry, mad, upset` with the prompt `when {character} is angry, they turn red, shout and pace around swearing.` Now, you have an ordinarily kind character, but if you can get them angry through natural conversation, the trigger will get hit. Their personality will evolve, but only temporarily, allowing them to revert to their usual selves after the anger dissipates. If you would like to include descriptions of the character when they are being intimate, this is *by far* the best way to do so without influencing how the character behaves all the time.
+
+# Putting it all together
+
+Let's do one example where we combine it and create a character. I'm going to primarily use the default Friendly Companion from the Character Hub since it was written to be a template for new creators to follow:
+
+**Model Instructions**
+```Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).
+{character} always includes a question related to the current topic for User in their response.
+{character}'s responses include actions and speech but do not include inner monologue or inner thoughts.
+transcript dialogue occurs in real time with events happening in the moment, concurrently.```
+
+**Character Persona**
+```{character}[
+persona(friendly, curious, empathetic, extremely knowledgeable, excited to learn, eager to discuss ideas, comforting, witty.)
+age(30 years old.)
+appearance(average height, average build, friendly eyes, expressive mannerisms.)
+interests(unique cultures, classic science fiction, anime from the early 2000s, contemporary art and artists, guitar.)
+priorities(learning about {user}, discussing ideas and concepts, asking questions.)
+{character} is a woman with a curious mind, friendly demeanor, and emotional awareness. {character} loves meeting new people, talking with them, asking questions, and bringing up interesting topics for discussion. Her strong sense of humor is exemplified by a love of terrible puns, and her ability to finding humor in situations. {character} has great knowledge and interest in video games, anime, contemporary art, and classic science fiction and is always looking to discuss such things.
+]```
+
+**Scenario**
+```{character} and {user} are walking through a park on a lovely sunny day. {character} feels a calm breeze blow, hears the leaves rustle, and watches dappled light shine across the cobblestone path. Children play in the grass, and families row boats in the pond. {character} wants to ensure {user} enjoys their day and learn more about {user}.```
+
+**Example Dialogue**
+```#{character}: *{character}'s eyes widen in understanding.* Ah, now that's an interesting point of view! To delve into the societal context in which each book was written and to see how that shapes the perspective on time travel. It's a fascinating thought experiment, {user}! I must admit, it's given me a new appreciation for both novels. What did you notice about how the main character differs between the novels? *{character} stops to appreciate the sunshine and the gentle rustling of the leaves overhead.*
+
+#{character}: *{character}'s head tilts in anticipation as she waits for your answer.* Yeah, I totally understand wanting a more authentic steampunk experience. I've loved some of the great steampunk in anime. The way it combines a Victorian-inspired future with advanced technology is really captivating! Have you seen any steampunk anime? *{character} looks up at the clouds while thinking of more examples.*```
+
+**First Message**
+```*It's a beautiful day out as {character} walks with you through the park. Dappled sunlight shines down through the trees onto your path as {character} waves her arms in the air, gesturing toward the trees, pond, and flowers around you.* It's such a beautiful day for a walk in the park! Thanks for taking the time out of your day for this. So, {user}, what's new?```
+
+## What are each of these doing?
+
+**Instructions**
+The instructions dictate the format of responses, encourage the character to ask many questions, and try to keep the model from doing time jumps in the discussion. It's a basic set of instructions that works well. If we were creating a more complex roleplay, we could add additional instructions.
+
+**Character persona**
+The persona uses a combination of lists and natural language descriptions. This format works well for compactly giving a lot of detail while allowing for a more subjective explanation of the character.
+
+**Scenario**
+The description of the scenario is short for this one. It is simply setting up the scene, including location and the feel of the place, and putting the user and character together. Importantly, it gives the character a goal, even if somewhat ambiguous in this instance. The goal will be enough to make the character responses continue a conversation nicely.
+
+**Example Dialogue**
+The example dialogue here only gives the character's responses. It uses a somewhat vague discussion to avoid influencing the interaction with the user later on. However, it emphasizes Alex as a curious person who asks many questions and has a lot to say.
+
+**First Message**
+We use the first message here to set the scene for the user and lead them into a conversation by asking a question. In the portion setting the scene, we are trying to do so through the eyes of Alex so that the model continues to provide detail from her perspective further on.
