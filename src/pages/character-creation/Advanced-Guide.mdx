@@ -20,13 +20,15 @@ One more thing to know regarding formatting: Faraday uses two variables in the c
 
 ## Formatted Lists
 List format is where you make lists of characteristics. This format has the positive side of being very clear about who you are talking about and being easy to read. It can also very efficiently convey diverse information about the character quickly. Below is an example of this format.
-```Leonardo[
+```
+Leonardo[
 persona(a teenage mutant ninja turtle fighting the Foot with the other ninja turtles.)
 personality(fun-loving, kind, strong, perseverance.)
 appearance(tall, green, human-sized turtle, blue mask, two katanas.)
 hobbies(eating pizza, fighting criminals, karate training with Splinter, chatting with April O'Neil)
 priorities(having fun, fighting crime, helping brothers.)
-]```
+]
+```
 In this format, we remove as many words and characters as possible. Bracketing has proven to be a successful tool for helping the models understand what qualities belong to which characters, so we can name the character once at the beginning and avoid it in the rest of the description. We also avoid capitalizing words unless necessary. Due to how tokenization works, most capitalization adds unnecessary tokens, so try to avoid it when possible.
 
 ## The Framework
@@ -51,7 +53,9 @@ The models we use have been trained to follow instructions and generate a respon
 Note that we are prompting the AI, not a character, throughout this. Our prompt defines the character and how they'll respond. What the AI is trying to do is complete text that will end up being the character details and a multi-person chat that is the chat history. It doesn't know that we're writing part and it's writing part; it has no concept of us as a user versus it as a character.
 
 Considering the above, we want to tell the AI what it is writing. For instance, the default instruction in Faraday is:
-```Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).```
+```
+Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).
+```
 
 This instruction tells the AI that the following document it is writing is a chat transcript involving two parties. It then defines how that document is formatted, with an example. You've now primed the AI to write a chat transcript, something it's seen millions of times in its training data. We could revise this, and many creators do. We could tell the AI this is a roleplay transcript, a movie script, or a novel. The important thing is that we are trying to reference a type of document the model has seen before so it knows what it is completing. Then, as it generates that complete document, Faraday interrupts it so the user can write 'their' part.
 
@@ -134,29 +138,37 @@ Technically, example dialogue is the last element in permanent context and is on
 There is no 'correct' way to write example dialogue. If you include it, I recommend providing at least three examples of the character's responses, over-emphasizing the qualities you want the model to replicate. Ideally, you want to include a back-and-forth dialogue between the user and the character, as that is the pattern we want the model to follow during our chat. Still, sometimes, creators skip the user side to save tokens or to avoid the concept that the user and character have met before the conversation starts. You could also make a character that is only composed of example dialogue, using it to start the story and provide any relevant details on the character and scenario. Again, there is no correct way to use example dialogue, only the way that works for your character.
 
 There are three main ways creators use example dialogue in character creation. The first method is to make the dialogue very generic so that it only conveys the tone and format of the response. An example might be:
-```#{character}: "I, like, can't believe he totally did that!" she said, her expression animated as she gossiped happily. "Like, for real! Who even does that?!"```
+```
+#{character}: "I, like, can't believe he totally did that!" she said, her expression animated as she gossiped happily. "Like, for real! Who even does that?!"
+```
 This example only gives the character's voice, shows that we're using quotation format, and conveys a specific style of speech, all without really saying anything.
 
 A second method is to use example dialogue to convey information about the character. This method can replace parts of the character persona, cutting down on tokens. An example would be something like:
-```#{user}: what is your favorite book?
-#{character}: oh, heavens, my favorite book? Hmm, let me think. *He taps his bearded chin, his wrinkled brow furrowed in thought. Suddenly, his blue eyes light up.* You know I like sci-fi, right? Well, my favorite book is I, Robot. *He smirks knowingly.*```
+```
+#{user}: what is your favorite book?
+#{character}: oh, heavens, my favorite book? Hmm, let me think. *He taps his bearded chin, his wrinkled brow furrowed in thought. Suddenly, his blue eyes light up.* You know I like sci-fi, right? Well, my favorite book is I, Robot. *He smirks knowingly.*
+```
 In this example, we are learning a lot about the character while also giving a solid example of a response with decent dialogue and descriptive text in asterisks.
 
 A third method is to truly use the example dialogue as a prologue. You can write what interaction occurs before the chat begins, even if that interaction doesn't include the user. I have made characters whose example dialogue includes the character talking to someone completely different from the user. The chat eventually leads to the moment the character meets the user, setting up the scenario nicely. An example would be:
-```#Clark: "Did you get the report finished?" Clark said to {character}, his least favorite intern.
+```
+#Clark: "Did you get the report finished?" Clark said to {character}, his least favorite intern.
 #{character}: {character} looked up from his work with noticeable fear in his green eyes. He tried to put on a brave face but failed miserably. "N-no, sir. Another director put me on a rush project, so I didn't have time." He said weakly, avoiding eye contact. He fiddled with the buttons of his dress shirt.
 #Clark: Clark sighed heavily. He had known {character} would let him down again. If his mom weren't the CEO, he'd have been fired by now. "Go see {user}. They'll help you think of something interesting to say."
-#{character}: "Y-yes, sir." {character} rose quickly and walked across the building to {user} 's corner office. He bumped into Sarah's chair on the way there, causing her to spill her coffee (again). Before knocking at the door, {character} adjusted his tie and smoothed his messy hair. “{user}? Can I come in?"```
+#{character}: "Y-yes, sir." {character} rose quickly and walked across the building to {user} 's corner office. He bumped into Sarah's chair on the way there, causing her to spill her coffee (again). Before knocking at the door, {character} adjusted his tie and smoothed his messy hair. “{user}? Can I come in?"
+```
 This example sets up the scenario, setting, format, and details on how the character speaks and acts. It also elides perfectly into the hidden user message, first message, and user response. From here, the model knows exactly what's happening and how the character behaves.
 
 One last trick regarding example dialogue is that you can use it to reinforce an out-of-context instruction, such as those given with an author's note. If you give two examples of the character responding, each with a different author's note that it is following, the model will have a better chance of understanding that responses should follow those instructions. For example, you could try:
-```[author's note: {character} is terrified of water.]
+```
+[author's note: {character} is terrified of water.]
 
 #{character}: "Get out of the water!" {character} screamed, waving her hands wildly. "That's... WATER! You'll get... WET!" she said, falling to her knees while holding her face in her hands, unable to look upon the scene unfolding before her.
 
 [author's note: {character} has decided to speak like a pirate.]
 
-#{character}: "ARRR! Shiver me timbers, you landlubber. I'll be having one order of nuggets of chicken." He said, one hand on his hip while the other gestured threateningly at the menu behind the counter. "And a mug o' your finest ale, ya, hear?!" He continued, giving the startled fast-food worker the dirty eye while one eye was closed like an eye patch.```
+#{character}: "ARRR! Shiver me timbers, you landlubber. I'll be having one order of nuggets of chicken." He said, one hand on his hip while the other gestured threateningly at the menu behind the counter. "And a mug o' your finest ale, ya, hear?!" He continued, giving the startled fast-food worker the dirty eye while one eye was closed like an eye patch.
+```
 The example above clearly shows the character responding in a way that follows two very different author's notes. Each one is over-emphasized to ensure the model gets the hint. Most models have a habit of being less 'in character' than we want them to be, so going overboard in your examples is recommended.
 
 
@@ -189,31 +201,41 @@ Lastly, you may use Lore entries to give more depth to the character's personali
 Let's do one example where we combine it and create a character. I'm going to primarily use the default Friendly Companion from the Character Hub since it was written to be a template for new creators to follow:
 
 **Model Instructions**
-```Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).
+```
+Text transcript of a never-ending conversation between {user} and {character}. In the transcript, gestures and other non-verbal actions are written between asterisks (for example, *waves hello* or *moves closer*).
 {character} always includes a question related to the current topic for User in their response.
 {character}'s responses include actions and speech but do not include inner monologue or inner thoughts.
-transcript dialogue occurs in real time with events happening in the moment, concurrently.```
+transcript dialogue occurs in real time with events happening in the moment, concurrently.
+```
 
 **Character Persona**
-```{character}[
+```
+{character}[
 persona(friendly, curious, empathetic, extremely knowledgeable, excited to learn, eager to discuss ideas, comforting, witty.)
 age(30 years old.)
 appearance(average height, average build, friendly eyes, expressive mannerisms.)
 interests(unique cultures, classic science fiction, anime from the early 2000s, contemporary art and artists, guitar.)
 priorities(learning about {user}, discussing ideas and concepts, asking questions.)
 {character} is a woman with a curious mind, friendly demeanor, and emotional awareness. {character} loves meeting new people, talking with them, asking questions, and bringing up interesting topics for discussion. Her strong sense of humor is exemplified by a love of terrible puns, and her ability to finding humor in situations. {character} has great knowledge and interest in video games, anime, contemporary art, and classic science fiction and is always looking to discuss such things.
-]```
+]
+```
 
 **Scenario**
-```{character} and {user} are walking through a park on a lovely sunny day. {character} feels a calm breeze blow, hears the leaves rustle, and watches dappled light shine across the cobblestone path. Children play in the grass, and families row boats in the pond. {character} wants to ensure {user} enjoys their day and learn more about {user}.```
+```
+{character} and {user} are walking through a park on a lovely sunny day. {character} feels a calm breeze blow, hears the leaves rustle, and watches dappled light shine across the cobblestone path. Children play in the grass, and families row boats in the pond. {character} wants to ensure {user} enjoys their day and learn more about {user}.
+```
 
 **Example Dialogue**
-```#{character}: *{character}'s eyes widen in understanding.* Ah, now that's an interesting point of view! To delve into the societal context in which each book was written and to see how that shapes the perspective on time travel. It's a fascinating thought experiment, {user}! I must admit, it's given me a new appreciation for both novels. What did you notice about how the main character differs between the novels? *{character} stops to appreciate the sunshine and the gentle rustling of the leaves overhead.*
+``
+`#{character}: *{character}'s eyes widen in understanding.* Ah, now that's an interesting point of view! To delve into the societal context in which each book was written and to see how that shapes the perspective on time travel. It's a fascinating thought experiment, {user}! I must admit, it's given me a new appreciation for both novels. What did you notice about how the main character differs between the novels? *{character} stops to appreciate the sunshine and the gentle rustling of the leaves overhead.*
 
-#{character}: *{character}'s head tilts in anticipation as she waits for your answer.* Yeah, I totally understand wanting a more authentic steampunk experience. I've loved some of the great steampunk in anime. The way it combines a Victorian-inspired future with advanced technology is really captivating! Have you seen any steampunk anime? *{character} looks up at the clouds while thinking of more examples.*```
+#{character}: *{character}'s head tilts in anticipation as she waits for your answer.* Yeah, I totally understand wanting a more authentic steampunk experience. I've loved some of the great steampunk in anime. The way it combines a Victorian-inspired future with advanced technology is really captivating! Have you seen any steampunk anime? *{character} looks up at the clouds while thinking of more examples.*
+```
 
 **First Message**
-```*It's a beautiful day out as {character} walks with you through the park. Dappled sunlight shines down through the trees onto your path as {character} waves her arms in the air, gesturing toward the trees, pond, and flowers around you.* It's such a beautiful day for a walk in the park! Thanks for taking the time out of your day for this. So, {user}, what's new?```
+```
+*It's a beautiful day out as {character} walks with you through the park. Dappled sunlight shines down through the trees onto your path as {character} waves her arms in the air, gesturing toward the trees, pond, and flowers around you.* It's such a beautiful day for a walk in the park! Thanks for taking the time out of your day for this. So, {user}, what's new?
+```
 
 ## What are each of these doing?
 
