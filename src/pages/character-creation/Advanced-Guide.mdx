@@ -29,7 +29,7 @@ priorities(having fun, fighting crime, helping brothers.)
 ]```
 In this format, we remove as many words and characters as possible. Bracketing has proven to be a successful tool for helping the models understand what qualities belong to which characters, so we can name the character once at the beginning and avoid it in the rest of the description. We also avoid capitalizing words unless necessary. Due to how tokenization works, most capitalization adds unnecessary tokens, so try to avoid it when possible.
 
-# The Framework
+## The Framework
 The LLM only sees text; it isn't processing the information we send as code or expecting any specific format. The rules and guides herein are merely things that have proven to work well. The first thing you'll notice is the text fields Faraday provides:
 - Instructions
 - Character persona
@@ -42,6 +42,8 @@ The LLM only sees text; it isn't processing the information we send as code or e
 Remember as you read this and work that these divisions are a construct to help us keep track of details; the information from each field is merged and sent to the model as one prompt; it doesn't see the division.
 
 We'll walk through each section and discuss how to use each well.
+
+# The Components of a Character
 
 ## Instructions
 The models we use have been trained to follow instructions and generate a response. As such, the way to start a prompt is by telling the AI what we expect to see. Here, we set the style and format for the interaction.
@@ -101,10 +103,8 @@ character persona is typically the meat of the prompt. We want to define the cha
 
 You may be planning on making a simple chat partner. However, I still recommend including much of the above information. Character personas can be pretty one-dimensional when they are limited to the details that pertain to the scenario you imagine. When you start adding a lot of detail that feels unrelated to the chat you have in mind, the AI is excellent at picking up on that detail and bringing those components into the chat. The AI may not bring up family if you don't tell it that the character has a younger brother, it may give your character a terrible job if you don't list their profession, and it may appear like a caricature if you don't list their hobbies. On the one hand, providing detail gives you, the creator, more control over who this character is, and on the other hand, it helps trigger the AI with things for the conversations to include.
 
-
 ### Unintended intimacy
 Humanity has been writing romance since the story was invented. Few novels or movies don't include a romance component in some way, and humans spend a tremendous amount of time talking about romance. The models include a ton of training that includes romance, and the finetunes we use include even more. Assuming you don't want your chat to jump head-first into intimacy, you will want to avoid including descriptions of sexuality in your persona, and you will need to be careful about the language you use when describing both personality and appearance. For instance, the adjective 'flirty' is a trigger for the AI, as is pretty much any detailed description of the female physique. Many creators may want their characters to be able to be intimate at some point, so we'll talk about how to deal with that in the Lorebook section, where we can use lore to 'trigger' the insertion of the relevant character description.
-
 
 ### How to ruin a character
 Two things are almost guaranteed to ruin a character: contradictions and lousy grammar.
@@ -182,6 +182,7 @@ Another use of the lorebook is to change what's happening in the interaction bas
 During the roleplay, the user and character can talk about the forest all they want, but when they get into the forest, someone will likely mention the word 'trees', and at that moment, Faraday will insert the lore prompt into context, and the character will comment on the impending dinosaur attack.
 
 Lastly, you may use Lore entries to give more depth to the character's personality without influencing their base personality. For instance, your character may be kind and compassionate most of the time but still have a terrible temper. If you were to describe that temper in the character's persona, it could influence their typical personality to be more volatile. However, if you create a lorebook entry for `angry, mad, upset` with the prompt `when {character} is angry, they turn red, shout and pace around swearing.` Now, you have an ordinarily kind character, but if you can get them angry through natural conversation, the trigger will get hit. Their personality will evolve, but only temporarily, allowing them to revert to their usual selves after the anger dissipates. If you would like to include descriptions of the character when they are being intimate, this is *by far* the best way to do so without influencing how the character behaves all the time.
+
 
 # Putting it all together
 
